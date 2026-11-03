@@ -1,0 +1,11 @@
+.DS_Store
+**/.DS_Store
+*.pyc
+__pycache__/
+node_modules/
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+.playwright-mcp/
+*.bak
