@@ -1,79 +1,50 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
+{% load static %}<!DOCTYPE html>
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Navarino | Servicios Comerciales{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'comercial_kit/css/navarino_admin.css' %}">
-  <style>
-    :root {
-      --nav-surface: #0A1118;
-      --nav-surface-raised: #1A2531;
-      --nav-ink: #E2E8F0;
-      --nav-ink-muted: #8A9AA8;
-      --nav-line: #2A3846;
-      --nav-line-strong: #8A9AA8;
-      --nav-accent: #E65C00;
-      --nav-accent-deep: #B84A00;
-      --nav-on-accent: #FFFFFF;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--nav-surface);
-      color: var(--nav-ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-    }
-    header.nav-header {
-      background-color: var(--nav-surface-raised);
-      border-bottom: 1px solid var(--nav-line);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header.nav-header img.logo {
-      height: 36px;
-      width: auto;
-    }
-    main.nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px 16px;
-    }
-    footer.nav-footer {
-      border-top: 1px solid var(--nav-line);
-      padding: 20px 24px;
-      text-align: center;
-      color: var(--nav-ink-muted);
-      font-size: 13px;
-    }
-  </style>
+  <link rel="icon" type="image/svg+xml" href="{% static 'comercial_kit/marca/navarino-favicon.svg' %}">
+  <script>
+    /* Tema Día por defecto; aplica la preferencia guardada antes de pintar. */
+    try {
+      var nvTema = window.localStorage.getItem("nv-theme");
+      if (nvTema === "nocturno" || nvTema === "auto") document.documentElement.setAttribute("data-theme", nvTema);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="{% static 'comercial_kit/css/navarino-tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'comercial_kit/css/navarino-componentes.css' %}">
+  <script src="{% static 'comercial_kit/js/navarino-tema.js' %}" defer></script>
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  <header class="nav-header">
-    <div class="brand">
-      <a href="/">
-        <img src="/marca-navarino/navarino-logo-negativo.svg"
-             onerror="this.onerror=null;this.src='{% static 'comercial_kit/svg/navarino-logo-negativo.svg' %}';"
-             alt="Navarino"
-             class="logo">
+  <header class="nv-header nav-header">
+    <div class="nv-header__inner">
+      <a href="/" class="nv-logo" aria-label="Navarino, inicio">
+        <img class="nv-logo-positivo" src="{% static 'comercial_kit/marca/navarino-logo-positivo.svg' %}" alt="Navarino" width="121" height="46">
+        <img class="nv-logo-negativo" src="{% static 'comercial_kit/marca/navarino-logo-negativo.svg' %}" alt="Navarino" width="140" height="65">
       </a>
+      <nav class="nv-topnav nav-links" aria-label="Principal">
+        {% block nav_links %}{% endblock %}
+      </nav>
+      <div class="nv-header__end">
+        <button type="button" class="nv-theme-toggle" data-nv-theme-toggle aria-pressed="false">
+          <svg class="nv-icon nv-theme-toggle__nocturno" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
+          <svg class="nv-icon nv-theme-toggle__dia" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span>Tema nocturno</span>
+        </button>
+      </div>
     </div>
-    <nav class="nav-links">
-      {% block nav_links %}{% endblock %}
-    </nav>
   </header>
 
-  <main class="nav-container">
+  <main class="nv-container nav-container" id="contenido">
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="nav-footer">
-    {% block footer %}Navarino Servicios Comerciales &copy; 2026{% endblock %}
+  <footer class="nv-footer nav-footer">
+    <div class="nv-footer__inner">
+      {% block footer %}<span>Navarino Servicios Comerciales © 2026</span>{% endblock %}
+    </div>
   </footer>
   {% block extra_scripts %}{% endblock %}
 </body>

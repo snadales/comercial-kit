@@ -1,0 +1,181 @@
+/* Navarino — tokens web (brandbook wiki negocios/navarino/marca/web).
+   Fuente de verdad: el brandbook en la wiki; este archivo lo implementa.
+   Tema por defecto: Día (claro). Nocturno es opcional: data-theme="nocturno"
+   o preferencia del sistema si la página declara data-theme="auto". */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@500;600&display=swap");
+
+:root {
+  /* Marca (fijos en ambos temas) */
+  --nv-beagle: #0A1118;
+  --nv-basalto: #1A2531;
+  --nv-acero: #8A9AA8;
+  --nv-niebla: #E2E8F0;
+  --nv-blanco: #FFFFFF;
+  --nv-senal: #E65C00;
+  --nv-senal-profunda: #B84A00;
+  --nv-kraft: #C9A97C;
+
+  /* Semánticos — Día */
+  --nv-surface: #FFFFFF;
+  --nv-surface-sunken: #F4F6F9;
+  --nv-surface-raised: #E2E8F0;
+  --nv-ink: #0A1118;
+  --nv-ink-muted: #4D5B68;
+  --nv-line: #C9D2DB;
+  --nv-line-strong: #4D5B68;
+  --nv-accent: #B84A00;
+  --nv-accent-hover: #9A3E00;
+  --nv-on-accent: #FFFFFF;
+  --nv-focus: #B84A00;
+  --nv-link: #0A1118;
+  --nv-link-hover: #B84A00;
+
+  /* Estados (texto y borde; el fondo es el *-bg) */
+  --nv-success: #1F6B45;
+  --nv-success-bg: #E6F2EB;
+  --nv-warning: #7A5200;
+  --nv-warning-bg: #FBF1DC;
+  --nv-danger: #A4262C;
+  --nv-danger-bg: #FBE9EA;
+  --nv-info: #1F4E79;
+  --nv-info-bg: #E5EEF7;
+
+  /* Paleta de datos (series en orden; se distinguen por claridad, no solo por tono) */
+  --nv-data-1: #1A2531;
+  --nv-data-2: #B84A00;
+  --nv-data-3: #3F7CAC;
+  --nv-data-4: #6E7F8E;
+  --nv-data-5: #6B8F3A;
+  --nv-data-6: #8C6A3C;
+  --nv-data-grid: #E2E8F0;
+
+  /* Tipografía */
+  --nv-font-display: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --nv-font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --nv-font-mono: "JetBrains Mono", "Roboto Mono", ui-monospace, monospace;
+  --nv-text-display: 68px;  --nv-lh-display: 72px;
+  --nv-text-h1: 42px;       --nv-lh-h1: 48px;
+  --nv-text-h2: 26px;       --nv-lh-h2: 32px;
+  --nv-text-h3: 20px;       --nv-lh-h3: 26px;
+  --nv-text-body-lg: 20px;  --nv-lh-body-lg: 32px;
+  --nv-text-body: 16px;     --nv-lh-body: 26px;
+  --nv-text-body-sm: 13px;  --nv-lh-body-sm: 21px;
+  --nv-text-caption: 12px;  --nv-lh-caption: 19px;
+  --nv-tracking-eyebrow: 0.236em;
+  --nv-weight-regular: 400;
+  --nv-weight-medium: 500;
+  --nv-weight-semibold: 600;
+
+  /* Espaciado Fibonacci */
+  --nv-space-3: 3px;
+  --nv-space-5: 5px;
+  --nv-space-8: 8px;
+  --nv-space-13: 13px;
+  --nv-space-21: 21px;
+  --nv-space-34: 34px;
+  --nv-space-55: 55px;
+  --nv-space-89: 89px;
+
+  /* Forma */
+  --nv-radius-0: 0;
+  --nv-radius-3: 3px;
+  --nv-radius-full: 9999px;
+  --nv-border-hairline: 1px;
+  --nv-border-focus: 2px;
+  --nv-shadow-overlay: 0 8px 21px rgba(10, 17, 24, 0.18); /* solo menús, diálogos y toasts */
+
+  /* Layout */
+  --nv-container-sm: 640px;
+  --nv-container-md: 960px;
+  --nv-container-lg: 1200px;
+  --nv-container-xl: 1440px;
+  --nv-gutter: 21px;
+  --nv-gutter-mobile: 16px;
+
+  /* Capas */
+  --nv-z-base: 0;
+  --nv-z-sticky: 100;
+  --nv-z-dropdown: 200;
+  --nv-z-overlay: 300;
+  --nv-z-modal: 400;
+  --nv-z-toast: 500;
+
+  /* Movimiento */
+  --nv-duration: 150ms;
+  --nv-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: light;
+}
+
+/* Breakpoints (para media queries; CSS no admite variables aquí):
+   sm ≥ 600px · md ≥ 900px · lg ≥ 1200px · xl ≥ 1440px */
+
+/* Nocturno: opcional */
+:root[data-theme="nocturno"] {
+  --nv-surface: #0A1118;
+  --nv-surface-sunken: #060B10;
+  --nv-surface-raised: #1A2531;
+  --nv-ink: #E2E8F0;
+  --nv-ink-muted: #8A9AA8;
+  --nv-line: #2A3846;
+  --nv-line-strong: #8A9AA8;
+  --nv-accent: #E65C00;
+  --nv-accent-hover: #FF7A1F;
+  --nv-on-accent: #0A1118;
+  --nv-focus: #E65C00;
+  --nv-link: #E2E8F0;
+  --nv-link-hover: #FF8A3D;
+  --nv-success: #5CC48E;
+  --nv-success-bg: #10291D;
+  --nv-warning: #E8B44C;
+  --nv-warning-bg: #2C220C;
+  --nv-danger: #F2777C;
+  --nv-danger-bg: #331417;
+  --nv-info: #7FB2E0;
+  --nv-info-bg: #12263A;
+  --nv-data-1: #E2E8F0;
+  --nv-data-2: #E65C00;
+  --nv-data-3: #6FA8D6;
+  --nv-data-4: #8A9AA8;
+  --nv-data-5: #9CC26A;
+  --nv-data-6: #C9A97C;
+  --nv-data-grid: #2A3846;
+  --nv-shadow-overlay: 0 8px 21px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --nv-surface: #0A1118;
+    --nv-surface-sunken: #060B10;
+    --nv-surface-raised: #1A2531;
+    --nv-ink: #E2E8F0;
+    --nv-ink-muted: #8A9AA8;
+    --nv-line: #2A3846;
+    --nv-line-strong: #8A9AA8;
+    --nv-accent: #E65C00;
+    --nv-accent-hover: #FF7A1F;
+    --nv-on-accent: #0A1118;
+    --nv-focus: #E65C00;
+    --nv-link: #E2E8F0;
+    --nv-link-hover: #FF8A3D;
+    --nv-success: #5CC48E;
+    --nv-success-bg: #10291D;
+    --nv-warning: #E8B44C;
+    --nv-warning-bg: #2C220C;
+    --nv-danger: #F2777C;
+    --nv-danger-bg: #331417;
+    --nv-info: #7FB2E0;
+    --nv-info-bg: #12263A;
+    --nv-data-1: #E2E8F0;
+    --nv-data-2: #E65C00;
+    --nv-data-3: #6FA8D6;
+    --nv-data-4: #8A9AA8;
+    --nv-data-5: #9CC26A;
+    --nv-data-6: #C9A97C;
+    --nv-data-grid: #2A3846;
+    --nv-shadow-overlay: 0 8px 21px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}

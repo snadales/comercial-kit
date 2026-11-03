@@ -1,5 +1,18 @@
 # Historial de Cambios (changeLog) — comercial-kit
 
+## [Sin publicar] - 2026-11-03 — Brandbook web y tokens (Navarino#303)
+
+### 1. Intención
+Llevar el brandbook Navarino a la web: tema Día por defecto (decisión D1), Nocturno opcional, logos oficiales y una biblioteca de componentes que solo consume `--nv-*`.
+
+### 2. Cambios
+- Logos oficiales en `static/comercial_kit/marca/` (7 archivos + `SHA256SUMS`); el antiguo `svg/navarino-logo-negativo.svg` pasa a `_archive/`. SVG de la wiki sin metadatos C2PA, verificados por render contra los PNG oficiales.
+- `navarino-tokens.json` generado desde el CSS con `scripts/generar_tokens_json.py` (`--check` en los tests).
+- `navarino-componentes.css`: botones, campos, tabla, tarjetas/KPI, estados, alertas, navegación, pestañas, vacío/cargando/error y gráficos.
+- `comercial_kit/base.html` y el admin cargan tokens y componentes, sin `:root` duplicado, con favicon e interruptor de tema accesible; el admin deja de forzar oscuro y reemplaza el modo oscuro propio de Django.
+- Alias `--nav-*` → `--nv-*` para no romper plantillas existentes de los servicios.
+- Muestra estática `docs/muestra-brandbook.html` y capturas en `docs/capturas/`.
+
 ## [1.0.0] - 2026-11-03
 
 ### 1. Intención

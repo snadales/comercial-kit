@@ -1,0 +1,829 @@
+{
+  "source": "src/comercial_kit/static/comercial_kit/css/navarino-tokens.css",
+  "generated_by": "scripts/generar_tokens_json.py",
+  "themes": {
+    "dia": "por defecto",
+    "nocturno": "data-theme=\"nocturno\" o \"auto\" con sistema oscuro"
+  },
+  "tokens": [
+    {
+      "name": "--nv-beagle",
+      "family": "color",
+      "value": {
+        "dia": "#0A1118",
+        "nocturno": "#0A1118"
+      },
+      "usage": "Marca: azul casi negro; fondo Nocturno y tinta Día"
+    },
+    {
+      "name": "--nv-basalto",
+      "family": "color",
+      "value": {
+        "dia": "#1A2531",
+        "nocturno": "#1A2531"
+      },
+      "usage": "Marca: superficie elevada en Nocturno"
+    },
+    {
+      "name": "--nv-acero",
+      "family": "color",
+      "value": {
+        "dia": "#8A9AA8",
+        "nocturno": "#8A9AA8"
+      },
+      "usage": "Marca: gris acero; texto secundario en Nocturno"
+    },
+    {
+      "name": "--nv-niebla",
+      "family": "color",
+      "value": {
+        "dia": "#E2E8F0",
+        "nocturno": "#E2E8F0"
+      },
+      "usage": "Marca: gris niebla; superficie elevada en Día"
+    },
+    {
+      "name": "--nv-blanco",
+      "family": "color",
+      "value": {
+        "dia": "#FFFFFF",
+        "nocturno": "#FFFFFF"
+      },
+      "usage": "Marca: blanco"
+    },
+    {
+      "name": "--nv-senal",
+      "family": "color",
+      "value": {
+        "dia": "#E65C00",
+        "nocturno": "#E65C00"
+      },
+      "usage": "Marca: naranja señal; acento en Nocturno"
+    },
+    {
+      "name": "--nv-senal-profunda",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#B84A00"
+      },
+      "usage": "Marca: naranja profundo; acento en Día"
+    },
+    {
+      "name": "--nv-kraft",
+      "family": "color",
+      "value": {
+        "dia": "#C9A97C",
+        "nocturno": "#C9A97C"
+      },
+      "usage": "Marca: kraft; material de empaque, uso decorativo"
+    },
+    {
+      "name": "--nv-surface",
+      "family": "color",
+      "value": {
+        "dia": "#FFFFFF",
+        "nocturno": "#0A1118"
+      },
+      "usage": "Fondo de página"
+    },
+    {
+      "name": "--nv-surface-sunken",
+      "family": "color",
+      "value": {
+        "dia": "#F4F6F9",
+        "nocturno": "#060B10"
+      },
+      "usage": "Fondo hundido: campos, bloques de código"
+    },
+    {
+      "name": "--nv-surface-raised",
+      "family": "color",
+      "value": {
+        "dia": "#E2E8F0",
+        "nocturno": "#1A2531"
+      },
+      "usage": "Superficie elevada: encabezados de tabla, tarjetas destacadas"
+    },
+    {
+      "name": "--nv-ink",
+      "family": "color",
+      "value": {
+        "dia": "#0A1118",
+        "nocturno": "#E2E8F0"
+      },
+      "usage": "Texto principal"
+    },
+    {
+      "name": "--nv-ink-muted",
+      "family": "color",
+      "value": {
+        "dia": "#4D5B68",
+        "nocturno": "#8A9AA8"
+      },
+      "usage": "Texto secundario, ayudas y rótulos"
+    },
+    {
+      "name": "--nv-line",
+      "family": "color",
+      "value": {
+        "dia": "#C9D2DB",
+        "nocturno": "#2A3846"
+      },
+      "usage": "Filete de 1 px para separar"
+    },
+    {
+      "name": "--nv-line-strong",
+      "family": "color",
+      "value": {
+        "dia": "#4D5B68",
+        "nocturno": "#8A9AA8"
+      },
+      "usage": "Borde de campos y controles"
+    },
+    {
+      "name": "--nv-accent",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#E65C00"
+      },
+      "usage": "Acento: una vez por vista (botón principal o foco)"
+    },
+    {
+      "name": "--nv-accent-hover",
+      "family": "color",
+      "value": {
+        "dia": "#9A3E00",
+        "nocturno": "#FF7A1F"
+      },
+      "usage": "Acento en hover"
+    },
+    {
+      "name": "--nv-on-accent",
+      "family": "color",
+      "value": {
+        "dia": "#FFFFFF",
+        "nocturno": "#0A1118"
+      },
+      "usage": "Texto sobre el acento"
+    },
+    {
+      "name": "--nv-focus",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#E65C00"
+      },
+      "usage": "Anillo de foco de 2 px con offset de 2 px"
+    },
+    {
+      "name": "--nv-link",
+      "family": "color",
+      "value": {
+        "dia": "#0A1118",
+        "nocturno": "#E2E8F0"
+      },
+      "usage": "Enlaces"
+    },
+    {
+      "name": "--nv-link-hover",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#FF8A3D"
+      },
+      "usage": "Enlaces en hover"
+    },
+    {
+      "name": "--nv-success",
+      "family": "color",
+      "value": {
+        "dia": "#1F6B45",
+        "nocturno": "#5CC48E"
+      },
+      "usage": "Estado éxito: texto y borde"
+    },
+    {
+      "name": "--nv-success-bg",
+      "family": "color",
+      "value": {
+        "dia": "#E6F2EB",
+        "nocturno": "#10291D"
+      },
+      "usage": "Estado éxito: fondo"
+    },
+    {
+      "name": "--nv-warning",
+      "family": "color",
+      "value": {
+        "dia": "#7A5200",
+        "nocturno": "#E8B44C"
+      },
+      "usage": "Estado aviso: texto y borde"
+    },
+    {
+      "name": "--nv-warning-bg",
+      "family": "color",
+      "value": {
+        "dia": "#FBF1DC",
+        "nocturno": "#2C220C"
+      },
+      "usage": "Estado aviso: fondo"
+    },
+    {
+      "name": "--nv-danger",
+      "family": "color",
+      "value": {
+        "dia": "#A4262C",
+        "nocturno": "#F2777C"
+      },
+      "usage": "Estado error o peligro: texto y borde"
+    },
+    {
+      "name": "--nv-danger-bg",
+      "family": "color",
+      "value": {
+        "dia": "#FBE9EA",
+        "nocturno": "#331417"
+      },
+      "usage": "Estado error o peligro: fondo"
+    },
+    {
+      "name": "--nv-info",
+      "family": "color",
+      "value": {
+        "dia": "#1F4E79",
+        "nocturno": "#7FB2E0"
+      },
+      "usage": "Estado información: texto y borde"
+    },
+    {
+      "name": "--nv-info-bg",
+      "family": "color",
+      "value": {
+        "dia": "#E5EEF7",
+        "nocturno": "#12263A"
+      },
+      "usage": "Estado información: fondo"
+    },
+    {
+      "name": "--nv-data-1",
+      "family": "color",
+      "value": {
+        "dia": "#1A2531",
+        "nocturno": "#E2E8F0"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-2",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#E65C00"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-3",
+      "family": "color",
+      "value": {
+        "dia": "#3F7CAC",
+        "nocturno": "#6FA8D6"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-4",
+      "family": "color",
+      "value": {
+        "dia": "#6E7F8E",
+        "nocturno": "#8A9AA8"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-5",
+      "family": "color",
+      "value": {
+        "dia": "#6B8F3A",
+        "nocturno": "#9CC26A"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-6",
+      "family": "color",
+      "value": {
+        "dia": "#8C6A3C",
+        "nocturno": "#C9A97C"
+      },
+      "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
+    },
+    {
+      "name": "--nv-data-grid",
+      "family": "color",
+      "value": {
+        "dia": "#E2E8F0",
+        "nocturno": "#2A3846"
+      },
+      "usage": "Grilla de gráficos"
+    },
+    {
+      "name": "--nv-space-3",
+      "family": "spacing",
+      "value": {
+        "dia": "3px",
+        "nocturno": "3px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-5",
+      "family": "spacing",
+      "value": {
+        "dia": "5px",
+        "nocturno": "5px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-8",
+      "family": "spacing",
+      "value": {
+        "dia": "8px",
+        "nocturno": "8px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-13",
+      "family": "spacing",
+      "value": {
+        "dia": "13px",
+        "nocturno": "13px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-21",
+      "family": "spacing",
+      "value": {
+        "dia": "21px",
+        "nocturno": "21px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-34",
+      "family": "spacing",
+      "value": {
+        "dia": "34px",
+        "nocturno": "34px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-55",
+      "family": "spacing",
+      "value": {
+        "dia": "55px",
+        "nocturno": "55px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-space-89",
+      "family": "spacing",
+      "value": {
+        "dia": "89px",
+        "nocturno": "89px"
+      },
+      "usage": "Espaciado Fibonacci"
+    },
+    {
+      "name": "--nv-container-sm",
+      "family": "spacing",
+      "value": {
+        "dia": "640px",
+        "nocturno": "640px"
+      },
+      "usage": "Ancho máximo de contenedor"
+    },
+    {
+      "name": "--nv-container-md",
+      "family": "spacing",
+      "value": {
+        "dia": "960px",
+        "nocturno": "960px"
+      },
+      "usage": "Ancho máximo de contenedor"
+    },
+    {
+      "name": "--nv-container-lg",
+      "family": "spacing",
+      "value": {
+        "dia": "1200px",
+        "nocturno": "1200px"
+      },
+      "usage": "Ancho máximo de contenedor"
+    },
+    {
+      "name": "--nv-container-xl",
+      "family": "spacing",
+      "value": {
+        "dia": "1440px",
+        "nocturno": "1440px"
+      },
+      "usage": "Ancho máximo de contenedor"
+    },
+    {
+      "name": "--nv-gutter",
+      "family": "spacing",
+      "value": {
+        "dia": "21px",
+        "nocturno": "21px"
+      },
+      "usage": "Medianil del contenedor (escritorio)"
+    },
+    {
+      "name": "--nv-gutter-mobile",
+      "family": "spacing",
+      "value": {
+        "dia": "16px",
+        "nocturno": "16px"
+      },
+      "usage": "Medianil del contenedor (móvil)"
+    },
+    {
+      "name": "--nv-radius-0",
+      "family": "radius",
+      "value": {
+        "dia": "0",
+        "nocturno": "0"
+      },
+      "usage": "Imágenes y paneles"
+    },
+    {
+      "name": "--nv-radius-3",
+      "family": "radius",
+      "value": {
+        "dia": "3px",
+        "nocturno": "3px"
+      },
+      "usage": "Botones, campos y chips"
+    },
+    {
+      "name": "--nv-radius-full",
+      "family": "radius",
+      "value": {
+        "dia": "9999px",
+        "nocturno": "9999px"
+      },
+      "usage": "Solo el punto de estado"
+    },
+    {
+      "name": "--nv-border-hairline",
+      "family": "radius",
+      "value": {
+        "dia": "1px",
+        "nocturno": "1px"
+      },
+      "usage": "Grosor de filete"
+    },
+    {
+      "name": "--nv-border-focus",
+      "family": "radius",
+      "value": {
+        "dia": "2px",
+        "nocturno": "2px"
+      },
+      "usage": "Grosor del anillo de foco"
+    },
+    {
+      "name": "--nv-shadow-overlay",
+      "family": "radius",
+      "value": {
+        "dia": "0 8px 21px rgba(10, 17, 24, 0.18)",
+        "nocturno": "0 8px 21px rgba(0, 0, 0, 0.5)"
+      },
+      "usage": "Sombra: solo menús, diálogos y toasts"
+    },
+    {
+      "name": "--nv-font-display",
+      "family": "type",
+      "value": {
+        "dia": "\"Outfit\", \"Helvetica Neue\", Arial, sans-serif",
+        "nocturno": "\"Outfit\", \"Helvetica Neue\", Arial, sans-serif"
+      },
+      "usage": "Titulares (Outfit 500, tipo oración)"
+    },
+    {
+      "name": "--nv-font-sans",
+      "family": "type",
+      "value": {
+        "dia": "\"Inter\", \"Helvetica Neue\", Arial, sans-serif",
+        "nocturno": "\"Inter\", \"Helvetica Neue\", Arial, sans-serif"
+      },
+      "usage": "Texto de interfaz (Inter)"
+    },
+    {
+      "name": "--nv-font-mono",
+      "family": "type",
+      "value": {
+        "dia": "\"JetBrains Mono\", \"Roboto Mono\", ui-monospace, monospace",
+        "nocturno": "\"JetBrains Mono\", \"Roboto Mono\", ui-monospace, monospace"
+      },
+      "usage": "Datos, montos y SKU (JetBrains Mono)"
+    },
+    {
+      "name": "--nv-text-display",
+      "family": "type",
+      "value": {
+        "dia": "68px",
+        "nocturno": "68px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-display",
+      "family": "type",
+      "value": {
+        "dia": "72px",
+        "nocturno": "72px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-h1",
+      "family": "type",
+      "value": {
+        "dia": "42px",
+        "nocturno": "42px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-h1",
+      "family": "type",
+      "value": {
+        "dia": "48px",
+        "nocturno": "48px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-h2",
+      "family": "type",
+      "value": {
+        "dia": "26px",
+        "nocturno": "26px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-h2",
+      "family": "type",
+      "value": {
+        "dia": "32px",
+        "nocturno": "32px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-h3",
+      "family": "type",
+      "value": {
+        "dia": "20px",
+        "nocturno": "20px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-h3",
+      "family": "type",
+      "value": {
+        "dia": "26px",
+        "nocturno": "26px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-body-lg",
+      "family": "type",
+      "value": {
+        "dia": "20px",
+        "nocturno": "20px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-body-lg",
+      "family": "type",
+      "value": {
+        "dia": "32px",
+        "nocturno": "32px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-body",
+      "family": "type",
+      "value": {
+        "dia": "16px",
+        "nocturno": "16px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-body",
+      "family": "type",
+      "value": {
+        "dia": "26px",
+        "nocturno": "26px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-body-sm",
+      "family": "type",
+      "value": {
+        "dia": "13px",
+        "nocturno": "13px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-body-sm",
+      "family": "type",
+      "value": {
+        "dia": "21px",
+        "nocturno": "21px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-text-caption",
+      "family": "type",
+      "value": {
+        "dia": "12px",
+        "nocturno": "12px"
+      },
+      "usage": "Tamaño de la escala tipográfica"
+    },
+    {
+      "name": "--nv-lh-caption",
+      "family": "type",
+      "value": {
+        "dia": "19px",
+        "nocturno": "19px"
+      },
+      "usage": "Interlineado de la escala tipográfica"
+    },
+    {
+      "name": "--nv-tracking-eyebrow",
+      "family": "type",
+      "value": {
+        "dia": "0.236em",
+        "nocturno": "0.236em"
+      },
+      "usage": "Tracking de rótulos en mayúsculas"
+    },
+    {
+      "name": "--nv-weight-regular",
+      "family": "type",
+      "value": {
+        "dia": "400",
+        "nocturno": "400"
+      },
+      "usage": "Peso tipográfico"
+    },
+    {
+      "name": "--nv-weight-medium",
+      "family": "type",
+      "value": {
+        "dia": "500",
+        "nocturno": "500"
+      },
+      "usage": "Peso tipográfico"
+    },
+    {
+      "name": "--nv-weight-semibold",
+      "family": "type",
+      "value": {
+        "dia": "600",
+        "nocturno": "600"
+      },
+      "usage": "Peso tipográfico"
+    },
+    {
+      "name": "--nv-z-base",
+      "family": "z",
+      "value": {
+        "dia": "0",
+        "nocturno": "0"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-z-sticky",
+      "family": "z",
+      "value": {
+        "dia": "100",
+        "nocturno": "100"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-z-dropdown",
+      "family": "z",
+      "value": {
+        "dia": "200",
+        "nocturno": "200"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-z-overlay",
+      "family": "z",
+      "value": {
+        "dia": "300",
+        "nocturno": "300"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-z-modal",
+      "family": "z",
+      "value": {
+        "dia": "400",
+        "nocturno": "400"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-z-toast",
+      "family": "z",
+      "value": {
+        "dia": "500",
+        "nocturno": "500"
+      },
+      "usage": "Capa de apilamiento"
+    },
+    {
+      "name": "--nv-bp-sm",
+      "family": "breakpoints",
+      "value": {
+        "dia": "600px",
+        "nocturno": "600px"
+      },
+      "usage": "Breakpoint sm: min-width 600px (solo en media queries)"
+    },
+    {
+      "name": "--nv-bp-md",
+      "family": "breakpoints",
+      "value": {
+        "dia": "900px",
+        "nocturno": "900px"
+      },
+      "usage": "Breakpoint md: min-width 900px (solo en media queries)"
+    },
+    {
+      "name": "--nv-bp-lg",
+      "family": "breakpoints",
+      "value": {
+        "dia": "1200px",
+        "nocturno": "1200px"
+      },
+      "usage": "Breakpoint lg: min-width 1200px (solo en media queries)"
+    },
+    {
+      "name": "--nv-bp-xl",
+      "family": "breakpoints",
+      "value": {
+        "dia": "1440px",
+        "nocturno": "1440px"
+      },
+      "usage": "Breakpoint xl: min-width 1440px (solo en media queries)"
+    },
+    {
+      "name": "--nv-duration",
+      "family": "motion",
+      "value": {
+        "dia": "150ms",
+        "nocturno": "150ms"
+      },
+      "usage": "Duración de transiciones"
+    },
+    {
+      "name": "--nv-ease",
+      "family": "motion",
+      "value": {
+        "dia": "cubic-bezier(0.2, 0, 0, 1)",
+        "nocturno": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "usage": "Curva de transiciones"
+    }
+  ]
+}
