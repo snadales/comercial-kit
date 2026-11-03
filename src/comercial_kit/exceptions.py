@@ -19,6 +19,8 @@ def rfc9457_exception_handler(exc: Exception, context: dict[str, Any]) -> Respon
 
     if response is None:
         # Error no manejado por DRF (e.g. 500)
+        import logging
+        logging.getLogger("comercial_kit.exceptions").exception("Excepción no manejada en DRF: %s", exc)
         problem_data = {
             "type": "https://wiki.yarken.cl/problemas/error-interno",
             "title": "Error Interno del Servidor",

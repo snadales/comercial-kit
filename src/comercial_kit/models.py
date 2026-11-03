@@ -125,6 +125,11 @@ class ConsumidorToken(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.alcance}) [{'Activo' if self.activo else 'Inactivo'}]"
 
+    @property
+    def is_authenticated(self) -> bool:
+        """Compatibilidad con request.user.is_authenticated de DRF."""
+        return bool(self.activo)
+
     @classmethod
     def hash_str(cls, raw_token: str) -> str:
         return hashlib.sha256(raw_token.strip().encode("utf-8")).hexdigest()
