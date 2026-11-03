@@ -27,18 +27,20 @@
     .m-matrix .nv-caption { margin: 0; }
     /* En pantallas angostas la matriz se desplaza dentro de su caja, nunca la página */
 
-    .is-hover.nv-btn--primary { --_bg: var(--nv-accent-hover); --_bd: var(--nv-accent-hover); }
-    .is-active.nv-btn--primary { --_bg: color-mix(in srgb, var(--nv-accent-hover) 85%, var(--nv-ink)); }
-    .is-hover.nv-btn--secondary, .is-hover.nv-btn--ghost { --_bg: var(--nv-surface-raised); }
-    .is-active.nv-btn--secondary, .is-active.nv-btn--ghost { --_bg: var(--nv-line); }
+    .is-hover.nv-btn--primary { --_bg: var(--nv-accent-fill-hover); --_bd: var(--nv-accent-fill-hover); box-shadow: var(--nv-shadow-card-hover); }
+    .is-active.nv-btn--primary { --_bg: var(--nv-accent-fill); box-shadow: none; }
+    .is-hover.nv-btn--secondary { --_bg: var(--nv-glaciar-bg); }
+    .is-active.nv-btn--secondary { --_bg: var(--nv-glaciar-bg); --_bd: var(--nv-glaciar); }
+    .is-hover.nv-btn--ghost { --_bg: var(--nv-surface-raised); }
+    .is-active.nv-btn--ghost { --_bg: var(--nv-line); }
     .is-hover.nv-btn--danger { --_bg: color-mix(in srgb, var(--nv-danger) 85%, var(--nv-ink)); }
     .is-active.nv-btn--danger { --_bg: color-mix(in srgb, var(--nv-danger) 72%, var(--nv-ink)); }
     .is-focus { outline: var(--nv-border-focus) solid var(--nv-focus); outline-offset: 2px; }
-    .is-focus.nv-input { border-color: var(--nv-ink); }
+    .is-focus.nv-input { border-color: var(--nv-glaciar); }
 
     /* Logos y zona de exclusión (resguardo x = 20 u por lado; caja 200,4 × 76,3 u) */
     .m-logos { display: grid; gap: var(--nv-space-21); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
-    .m-logo-panel { border: var(--nv-border-hairline) solid var(--nv-line); padding: var(--nv-space-34) var(--nv-space-21); display: flex; flex-direction: column; align-items: center; gap: var(--nv-space-13); }
+    .m-logo-panel { border: var(--nv-border-hairline) solid var(--nv-line-card); border-radius: var(--nv-radius-card); box-shadow: var(--nv-shadow-card); padding: var(--nv-space-34) var(--nv-space-21); display: flex; flex-direction: column; align-items: center; gap: var(--nv-space-13); }
     .m-logo-panel--blanco { background: var(--nv-blanco); }
     .m-logo-panel--beagle { background: var(--nv-beagle); border-color: var(--nv-beagle); }
     .m-logo-panel .nv-caption { color: var(--nv-acero); }
@@ -53,7 +55,7 @@
 
     /* Paleta */
     .m-swatches { display: grid; gap: var(--nv-space-13); grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
-    .m-swatch { border: var(--nv-border-hairline) solid var(--nv-line); min-width: 0; }
+    .m-swatch { background: var(--nv-surface); border: var(--nv-border-hairline) solid var(--nv-line-card); border-radius: var(--nv-radius-card); box-shadow: var(--nv-shadow-card); overflow: hidden; min-width: 0; }
     .m-swatch__chip { height: 55px; border-bottom: var(--nv-border-hairline) solid var(--nv-line); }
     .m-swatch__body { padding: var(--nv-space-8) var(--nv-space-13); font-size: var(--nv-text-caption); line-height: var(--nv-lh-caption); }
     .m-swatch__name { font-family: var(--nv-font-mono); font-weight: var(--nv-weight-medium); display: block; overflow-wrap: anywhere; }
@@ -67,7 +69,7 @@
     .m-space__bar { height: 13px; background: var(--nv-ink); flex: none; }
     .m-space__label { font-family: var(--nv-font-mono); width: 120px; flex: none; color: var(--nv-ink-muted); }
     .m-radii { display: flex; gap: var(--nv-space-21); flex-wrap: wrap; }
-    .m-radius { width: 89px; height: 55px; border: 1.5px solid var(--nv-ink); background: var(--nv-surface-raised); }
+    .m-radius { width: 89px; height: 55px; border: 1.5px solid var(--nv-glaciar); background: var(--nv-glaciar-bg); }
     .m-icons { display: flex; flex-wrap: wrap; gap: var(--nv-space-21); color: var(--nv-ink); }
   </style>
 </head>
@@ -99,8 +101,8 @@
     <section class="m-section">
       <span class="nv-eyebrow">Brandbook web</span>
       <h1 class="nv-display">Navarino en pantalla</h1>
-      <p class="nv-lead nv-muted">Tokens, logos y componentes para las herramientas web. Tema Día por defecto y Nocturno como opción.</p>
-      <p class="m-note">Esta muestra repite el botón principal para mostrar sus estados. En una vista real el acento aparece una sola vez: en el botón principal o en el foco.</p>
+      <p class="nv-lead nv-muted">Tokens, logos y componentes para las herramientas web. Estilo D5 «Patagonia viva»: fondo glaciar, tarjetas blancas con sombra suave y esquinas redondeadas. Tema Día por defecto y Nocturno como opción.</p>
+      <p class="m-note">Esta muestra repite el botón principal para mostrar sus estados. En una vista real el naranja de relleno aparece una sola vez: en el botón principal. Glaciar y lenga son colores de apoyo.</p>
     </section>
 
     <!-- Logo -->
@@ -139,11 +141,13 @@
     <section class="m-section" id="paleta">
       <span class="nv-eyebrow">Color</span>
       <h2>Paleta</h2>
-      <p class="m-note">Los valores y ratios se leen en vivo de los tokens del tema activo. El ratio de los semánticos se mide contra <code>--nv-surface</code>; el de <code>--nv-on-accent</code>, contra <code>--nv-accent</code>; el de los estados, contra su fondo.</p>
+      <p class="m-note">Los valores y ratios se leen en vivo de los tokens del tema activo. El ratio de los semánticos se mide contra <code>--nv-surface</code>; el de <code>--nv-on-accent-fill</code>, contra <code>--nv-accent-fill</code>; el de los estados y del apoyo teñido, contra su fondo; las series de datos, contra la tarjeta y contra el fondo de página.</p>
       <h3 class="m-sub">Marca</h3>
       <div class="m-swatches" data-swatches="marca"></div>
       <h3 class="m-sub">Semánticos</h3>
       <div class="m-swatches" data-swatches="semanticos"></div>
+      <h3 class="m-sub">Apoyo: glaciar y lenga</h3>
+      <div class="m-swatches" data-swatches="apoyo"></div>
       <h3 class="m-sub">Estados</h3>
       <div class="m-swatches" data-swatches="estados"></div>
       <h3 class="m-sub">Datos</h3>
@@ -186,9 +190,10 @@
       <div data-spaces></div>
       <h3 class="m-sub">Radios</h3>
       <div class="m-radii">
-        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-0)"></div><figcaption class="nv-caption nv-mono">0 · imágenes y paneles</figcaption></figure>
-        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-3)"></div><figcaption class="nv-caption nv-mono">3 px · botones, campos, chips</figcaption></figure>
-        <figure style="margin:0"><div style="display:flex;align-items:center;gap:8px;height:55px"><span class="nv-dot" style="--_dot:var(--nv-success);width:13px;height:13px"></span></div><figcaption class="nv-caption nv-mono">full · solo punto de estado</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-sm)"></div><figcaption class="nv-caption nv-mono">5 px · casillas, código</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-control)"></div><figcaption class="nv-caption nv-mono">10 px · botones y campos</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-card)"></div><figcaption class="nv-caption nv-mono">12 px · tarjetas y tablas</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-full)"></div><figcaption class="nv-caption nv-mono">full · insignias y pestañas</figcaption></figure>
       </div>
     </section>
 
@@ -313,6 +318,8 @@
         <span class="nv-badge nv-badge--pausado"><span class="nv-dot"></span>Pausado</span>
         <span class="nv-badge nv-badge--error"><span class="nv-dot"></span>Error</span>
         <span class="nv-badge nv-badge--borrador"><span class="nv-dot"></span>Borrador</span>
+        <span class="nv-badge nv-badge--glaciar"><span class="nv-dot"></span>Glaciar</span>
+        <span class="nv-badge nv-badge--lenga"><span class="nv-dot"></span>Lenga</span>
       </div>
 
       <h2 class="m-sub">Alertas</h2>
@@ -381,8 +388,8 @@
       <p class="m-note">Únicos elementos con sombra, junto con los diálogos.</p>
       <div class="nv-row" style="align-items:flex-start">
         <div class="nv-menu" role="menu" aria-label="Acciones">
-          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:0">Editar precio</button>
-          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:0">Pausar publicación</button>
+          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:var(--nv-radius-control)">Editar precio</button>
+          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:var(--nv-radius-control)">Pausar publicación</button>
         </div>
         <div class="nv-toast" role="status"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Precio actualizado</div>
       </div>
@@ -425,9 +432,10 @@
       /* Paleta con hex y contraste WCAG medido en vivo */
       var grupos = {
         marca: [["beagle", "blanco"], ["basalto", "blanco"], ["acero", "beagle"], ["niebla", "beagle"], ["blanco", "beagle"], ["senal", "beagle"], ["senal-profunda", "blanco"], ["kraft", "beagle"]],
-        semanticos: [["surface", "ink"], ["surface-sunken", "ink"], ["surface-raised", "ink"], ["ink", "surface"], ["ink-muted", "surface"], ["line", "surface"], ["line-strong", "surface"], ["accent", "surface"], ["accent-hover", "surface"], ["on-accent", "accent"], ["focus", "surface"], ["link-hover", "surface"]],
+        semanticos: [["surface", "ink"], ["surface-sunken", "ink"], ["surface-raised", "ink"], ["ink", "surface"], ["ink-muted", "surface"], ["line", "surface"], ["line-strong", "surface"], ["line-strong", "surface-sunken"], ["accent", "surface"], ["accent-hover", "surface"], ["on-accent", "accent"], ["accent-fill", "on-accent-fill"], ["accent-fill-hover", "on-accent-fill"], ["on-accent-fill", "accent-fill"], ["accent-text", "surface"], ["focus", "surface-sunken"], ["link-hover", "surface"], ["ink", "surface-sunken"], ["ink-muted", "surface-sunken"]],
+        apoyo: [["glaciar", "surface"], ["glaciar-ink", "surface"], ["glaciar-ink", "glaciar-bg"], ["glaciar-bg", "glaciar-ink"], ["glaciar-line", "surface"], ["lenga", "surface"], ["lenga-ink", "lenga-bg"], ["lenga-bg", "lenga-ink"]],
         estados: [["success", "success-bg"], ["warning", "warning-bg"], ["danger", "danger-bg"], ["info", "info-bg"]],
-        datos: [["data-1", "surface"], ["data-2", "surface"], ["data-3", "surface"], ["data-4", "surface"], ["data-5", "surface"], ["data-6", "surface"], ["data-grid", "surface"]]
+        datos: [["data-1", "surface"], ["data-2", "surface"], ["data-3", "surface"], ["data-4", "surface"], ["data-5", "surface"], ["data-6", "surface"], ["data-1", "surface-sunken"], ["data-2", "surface-sunken"], ["data-3", "surface-sunken"], ["data-4", "surface-sunken"], ["data-5", "surface-sunken"], ["data-6", "surface-sunken"], ["data-grid", "surface"]]
       };
       function hex(nombre) { return getComputedStyle(document.documentElement).getPropertyValue("--nv-" + nombre).trim().toUpperCase(); }
       function lum(h) {

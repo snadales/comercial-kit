@@ -79,28 +79,46 @@
       "usage": "Marca: kraft; material de empaque, uso decorativo"
     },
     {
+      "name": "--nv-glaciar-marca",
+      "family": "color",
+      "value": {
+        "dia": "#0E7C86",
+        "nocturno": "#0E7C86"
+      },
+      "usage": "Marca D5: glaciar, color de apoyo"
+    },
+    {
+      "name": "--nv-lenga-marca",
+      "family": "color",
+      "value": {
+        "dia": "#5B8C3A",
+        "nocturno": "#5B8C3A"
+      },
+      "usage": "Marca D5: lenga, color de apoyo y gráficos"
+    },
+    {
       "name": "--nv-surface",
       "family": "color",
       "value": {
         "dia": "#FFFFFF",
         "nocturno": "#0A1118"
       },
-      "usage": "Fondo de página"
+      "usage": "Fondo de tarjetas, campos y paneles"
     },
     {
       "name": "--nv-surface-sunken",
       "family": "color",
       "value": {
-        "dia": "#F4F6F9",
+        "dia": "#EEF5F6",
         "nocturno": "#060B10"
       },
-      "usage": "Fondo hundido: campos, bloques de código"
+      "usage": "Fondo de página (tinte glaciar en Día, D5) y bloques hundidos"
     },
     {
       "name": "--nv-surface-raised",
       "family": "color",
       "value": {
-        "dia": "#E2E8F0",
+        "dia": "#E3EEF0",
         "nocturno": "#1A2531"
       },
       "usage": "Superficie elevada: encabezados de tabla, tarjetas destacadas"
@@ -127,7 +145,7 @@
       "name": "--nv-line",
       "family": "color",
       "value": {
-        "dia": "#C9D2DB",
+        "dia": "#D3E3E6",
         "nocturno": "#2A3846"
       },
       "usage": "Filete de 1 px para separar"
@@ -136,10 +154,19 @@
       "name": "--nv-line-strong",
       "family": "color",
       "value": {
-        "dia": "#4D5B68",
+        "dia": "#647A80",
         "nocturno": "#8A9AA8"
       },
       "usage": "Borde de campos y controles"
+    },
+    {
+      "name": "--nv-line-card",
+      "family": "color",
+      "value": {
+        "dia": "transparent",
+        "nocturno": "#1C2834"
+      },
+      "usage": "Borde de tarjeta: transparente en Día (sombra), filete en Nocturno"
     },
     {
       "name": "--nv-accent",
@@ -148,7 +175,7 @@
         "dia": "#B84A00",
         "nocturno": "#E65C00"
       },
-      "usage": "Acento: una vez por vista (botón principal o foco)"
+      "usage": "Acento legible como texto o borde (compatibilidad; en Día #B84A00)"
     },
     {
       "name": "--nv-accent-hover",
@@ -166,7 +193,43 @@
         "dia": "#FFFFFF",
         "nocturno": "#0A1118"
       },
-      "usage": "Texto sobre el acento"
+      "usage": "Texto sobre --nv-accent"
+    },
+    {
+      "name": "--nv-accent-fill",
+      "family": "color",
+      "value": {
+        "dia": "#E65C00",
+        "nocturno": "#E65C00"
+      },
+      "usage": "Acento como relleno: botón principal (D5)"
+    },
+    {
+      "name": "--nv-accent-fill-hover",
+      "family": "color",
+      "value": {
+        "dia": "#FF7A1F",
+        "nocturno": "#FF7A1F"
+      },
+      "usage": "Relleno del botón principal en hover"
+    },
+    {
+      "name": "--nv-on-accent-fill",
+      "family": "color",
+      "value": {
+        "dia": "#0A1118",
+        "nocturno": "#0A1118"
+      },
+      "usage": "Texto tinta sobre el relleno naranja"
+    },
+    {
+      "name": "--nv-accent-text",
+      "family": "color",
+      "value": {
+        "dia": "#B84A00",
+        "nocturno": "#FF8A3D"
+      },
+      "usage": "Naranja como texto sobre fondo claro u oscuro (≥ 4,5)"
     },
     {
       "name": "--nv-focus",
@@ -194,6 +257,69 @@
         "nocturno": "#FF8A3D"
       },
       "usage": "Enlaces en hover"
+    },
+    {
+      "name": "--nv-glaciar",
+      "family": "color",
+      "value": {
+        "dia": "#0E7C86",
+        "nocturno": "#4FB3BC"
+      },
+      "usage": "Apoyo glaciar: gráficos, foco de campos, bordes activos"
+    },
+    {
+      "name": "--nv-glaciar-ink",
+      "family": "color",
+      "value": {
+        "dia": "#0B5C63",
+        "nocturno": "#7FD0D7"
+      },
+      "usage": "Texto glaciar: botón secundario, insignia, pestaña activa"
+    },
+    {
+      "name": "--nv-glaciar-bg",
+      "family": "color",
+      "value": {
+        "dia": "#DDF0F1",
+        "nocturno": "#0F2C30"
+      },
+      "usage": "Fondo teñido glaciar: insignias, pestaña activa, hover"
+    },
+    {
+      "name": "--nv-glaciar-line",
+      "family": "color",
+      "value": {
+        "dia": "#BFDDE0",
+        "nocturno": "#24555B"
+      },
+      "usage": "Borde glaciar del botón secundario y filetes de tabla"
+    },
+    {
+      "name": "--nv-lenga",
+      "family": "color",
+      "value": {
+        "dia": "#5B8C3A",
+        "nocturno": "#9CC26A"
+      },
+      "usage": "Apoyo lenga: gráficos y punto de insignia"
+    },
+    {
+      "name": "--nv-lenga-ink",
+      "family": "color",
+      "value": {
+        "dia": "#3E6624",
+        "nocturno": "#B5D68A"
+      },
+      "usage": "Texto lenga en insignias"
+    },
+    {
+      "name": "--nv-lenga-bg",
+      "family": "color",
+      "value": {
+        "dia": "#E6F0DC",
+        "nocturno": "#1A2A12"
+      },
+      "usage": "Fondo teñido lenga en insignias"
     },
     {
       "name": "--nv-success",
@@ -271,8 +397,8 @@
       "name": "--nv-data-1",
       "family": "color",
       "value": {
-        "dia": "#1A2531",
-        "nocturno": "#E2E8F0"
+        "dia": "#E65C00",
+        "nocturno": "#E65C00"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -280,8 +406,8 @@
       "name": "--nv-data-2",
       "family": "color",
       "value": {
-        "dia": "#B84A00",
-        "nocturno": "#E65C00"
+        "dia": "#0E7882",
+        "nocturno": "#55B6BE"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -289,8 +415,8 @@
       "name": "--nv-data-3",
       "family": "color",
       "value": {
-        "dia": "#3F7CAC",
-        "nocturno": "#6FA8D6"
+        "dia": "#588738",
+        "nocturno": "#A0C570"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -298,8 +424,8 @@
       "name": "--nv-data-4",
       "family": "color",
       "value": {
-        "dia": "#6E7F8E",
-        "nocturno": "#8A9AA8"
+        "dia": "#326289",
+        "nocturno": "#679CC7"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -307,8 +433,8 @@
       "name": "--nv-data-5",
       "family": "color",
       "value": {
-        "dia": "#6B8F3A",
-        "nocturno": "#9CC26A"
+        "dia": "#624A2A",
+        "nocturno": "#DDCAAE"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -316,8 +442,8 @@
       "name": "--nv-data-6",
       "family": "color",
       "value": {
-        "dia": "#8C6A3C",
-        "nocturno": "#C9A97C"
+        "dia": "#1A2531",
+        "nocturno": "#E2E8F0"
       },
       "usage": "Serie de datos en orden; se distinguen por claridad, no solo por tono"
     },
@@ -325,7 +451,7 @@
       "name": "--nv-data-grid",
       "family": "color",
       "value": {
-        "dia": "#E2E8F0",
+        "dia": "#E3EEF0",
         "nocturno": "#2A3846"
       },
       "usage": "Grilla de gráficos"
@@ -463,7 +589,7 @@
         "dia": "0",
         "nocturno": "0"
       },
-      "usage": "Imágenes y paneles"
+      "usage": "Compatibilidad (sin uso en D5: ninguna esquina en 0)"
     },
     {
       "name": "--nv-radius-3",
@@ -472,7 +598,34 @@
         "dia": "3px",
         "nocturno": "3px"
       },
-      "usage": "Botones, campos y chips"
+      "usage": "Compatibilidad (reemplazado por --nv-radius-control en D5)"
+    },
+    {
+      "name": "--nv-radius-sm",
+      "family": "radius",
+      "value": {
+        "dia": "5px",
+        "nocturno": "5px"
+      },
+      "usage": "Casillas, esqueletos y código"
+    },
+    {
+      "name": "--nv-radius-control",
+      "family": "radius",
+      "value": {
+        "dia": "10px",
+        "nocturno": "10px"
+      },
+      "usage": "Botones y campos (10 px, D5)"
+    },
+    {
+      "name": "--nv-radius-card",
+      "family": "radius",
+      "value": {
+        "dia": "12px",
+        "nocturno": "12px"
+      },
+      "usage": "Tarjetas, tablas, alertas, menús y paneles (12 px, D5)"
     },
     {
       "name": "--nv-radius-full",
@@ -481,7 +634,7 @@
         "dia": "9999px",
         "nocturno": "9999px"
       },
-      "usage": "Solo el punto de estado"
+      "usage": "Píldora: insignias, chips, pestañas y punto de estado"
     },
     {
       "name": "--nv-border-hairline",
@@ -502,13 +655,31 @@
       "usage": "Grosor del anillo de foco"
     },
     {
+      "name": "--nv-shadow-card",
+      "family": "radius",
+      "value": {
+        "dia": "0 2px 10px rgba(11, 92, 99, 0.10)",
+        "nocturno": "0 2px 12px rgba(0, 0, 0, 0.55)"
+      },
+      "usage": "Sombra suave de tarjeta (reemplaza el borde duro, D5)"
+    },
+    {
+      "name": "--nv-shadow-card-hover",
+      "family": "radius",
+      "value": {
+        "dia": "0 6px 18px rgba(11, 92, 99, 0.14)",
+        "nocturno": "0 6px 20px rgba(0, 0, 0, 0.65)"
+      },
+      "usage": "Sombra de tarjeta o botón principal en hover"
+    },
+    {
       "name": "--nv-shadow-overlay",
       "family": "radius",
       "value": {
-        "dia": "0 8px 21px rgba(10, 17, 24, 0.18)",
-        "nocturno": "0 8px 21px rgba(0, 0, 0, 0.5)"
+        "dia": "0 8px 21px rgba(11, 92, 99, 0.18)",
+        "nocturno": "0 8px 24px rgba(0, 0, 0, 0.6)"
       },
-      "usage": "Sombra: solo menús, diálogos y toasts"
+      "usage": "Sombra de capa: menús, diálogos y toasts"
     },
     {
       "name": "--nv-font-display",

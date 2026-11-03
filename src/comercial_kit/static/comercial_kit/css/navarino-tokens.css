@@ -1,7 +1,10 @@
 /* Navarino — tokens web (brandbook wiki negocios/navarino/marca/web).
    Fuente de verdad: el brandbook en la wiki; este archivo lo implementa.
    Tema por defecto: Día (claro). Nocturno es opcional: data-theme="nocturno"
-   o preferencia del sistema si la página declara data-theme="auto". */
+   o preferencia del sistema si la página declara data-theme="auto".
+   Estilo visual D5 «Patagonia viva» (2026-11-03): fondo con tinte glaciar,
+   tarjetas blancas con sombra suave, esquinas redondeadas, botón principal
+   naranja con texto tinta y colores de apoyo glaciar y lenga. El logo no cambia. */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@500;600&display=swap");
 
@@ -15,21 +18,37 @@
   --nv-senal: #E65C00;
   --nv-senal-profunda: #B84A00;
   --nv-kraft: #C9A97C;
+  --nv-glaciar-marca: #0E7C86;
+  --nv-lenga-marca: #5B8C3A;
 
-  /* Semánticos — Día */
+  /* Semánticos — Día (D5: página con tinte glaciar, tarjetas blancas) */
   --nv-surface: #FFFFFF;
-  --nv-surface-sunken: #F4F6F9;
-  --nv-surface-raised: #E2E8F0;
+  --nv-surface-sunken: #EEF5F6;
+  --nv-surface-raised: #E3EEF0;
   --nv-ink: #0A1118;
   --nv-ink-muted: #4D5B68;
-  --nv-line: #C9D2DB;
-  --nv-line-strong: #4D5B68;
+  --nv-line: #D3E3E6;
+  --nv-line-strong: #647A80;
+  --nv-line-card: transparent;
   --nv-accent: #B84A00;
   --nv-accent-hover: #9A3E00;
   --nv-on-accent: #FFFFFF;
+  --nv-accent-fill: #E65C00;
+  --nv-accent-fill-hover: #FF7A1F;
+  --nv-on-accent-fill: #0A1118;
+  --nv-accent-text: #B84A00;
   --nv-focus: #B84A00;
   --nv-link: #0A1118;
   --nv-link-hover: #B84A00;
+
+  /* Apoyo D5: glaciar y lenga */
+  --nv-glaciar: #0E7C86;
+  --nv-glaciar-ink: #0B5C63;
+  --nv-glaciar-bg: #DDF0F1;
+  --nv-glaciar-line: #BFDDE0;
+  --nv-lenga: #5B8C3A;
+  --nv-lenga-ink: #3E6624;
+  --nv-lenga-bg: #E6F0DC;
 
   /* Estados (texto y borde; el fondo es el *-bg) */
   --nv-success: #1F6B45;
@@ -41,14 +60,15 @@
   --nv-info: #1F4E79;
   --nv-info-bg: #E5EEF7;
 
-  /* Paleta de datos (series en orden; se distinguen por claridad, no solo por tono) */
-  --nv-data-1: #1A2531;
-  --nv-data-2: #B84A00;
-  --nv-data-3: #3F7CAC;
-  --nv-data-4: #6E7F8E;
-  --nv-data-5: #6B8F3A;
-  --nv-data-6: #8C6A3C;
-  --nv-data-grid: #E2E8F0;
+  /* Paleta de datos D5 (series en orden; ≥3:1 contra surface y surface-sunken
+     y ΔL* ≥ 5 entre todas: se distinguen por claridad, no solo por tono) */
+  --nv-data-1: #E65C00;
+  --nv-data-2: #0E7882;
+  --nv-data-3: #588738;
+  --nv-data-4: #326289;
+  --nv-data-5: #624A2A;
+  --nv-data-6: #1A2531;
+  --nv-data-grid: #E3EEF0;
 
   /* Tipografía */
   --nv-font-display: "Outfit", "Helvetica Neue", Arial, sans-serif;
@@ -77,13 +97,18 @@
   --nv-space-55: 55px;
   --nv-space-89: 89px;
 
-  /* Forma */
+  /* Forma (D5: ya no hay esquinas en 0; radius-0 y radius-3 quedan por compatibilidad) */
   --nv-radius-0: 0;
   --nv-radius-3: 3px;
+  --nv-radius-sm: 5px;
+  --nv-radius-control: 10px;
+  --nv-radius-card: 12px;
   --nv-radius-full: 9999px;
   --nv-border-hairline: 1px;
   --nv-border-focus: 2px;
-  --nv-shadow-overlay: 0 8px 21px rgba(10, 17, 24, 0.18); /* solo menús, diálogos y toasts */
+  --nv-shadow-card: 0 2px 10px rgba(11, 92, 99, 0.10);
+  --nv-shadow-card-hover: 0 6px 18px rgba(11, 92, 99, 0.14);
+  --nv-shadow-overlay: 0 8px 21px rgba(11, 92, 99, 0.18);
 
   /* Layout */
   --nv-container-sm: 640px;
@@ -120,12 +145,24 @@
   --nv-ink-muted: #8A9AA8;
   --nv-line: #2A3846;
   --nv-line-strong: #8A9AA8;
+  --nv-line-card: #1C2834;
   --nv-accent: #E65C00;
   --nv-accent-hover: #FF7A1F;
   --nv-on-accent: #0A1118;
+  --nv-accent-fill: #E65C00;
+  --nv-accent-fill-hover: #FF7A1F;
+  --nv-on-accent-fill: #0A1118;
+  --nv-accent-text: #FF8A3D;
   --nv-focus: #E65C00;
   --nv-link: #E2E8F0;
   --nv-link-hover: #FF8A3D;
+  --nv-glaciar: #4FB3BC;
+  --nv-glaciar-ink: #7FD0D7;
+  --nv-glaciar-bg: #0F2C30;
+  --nv-glaciar-line: #24555B;
+  --nv-lenga: #9CC26A;
+  --nv-lenga-ink: #B5D68A;
+  --nv-lenga-bg: #1A2A12;
   --nv-success: #5CC48E;
   --nv-success-bg: #10291D;
   --nv-warning: #E8B44C;
@@ -134,14 +171,16 @@
   --nv-danger-bg: #331417;
   --nv-info: #7FB2E0;
   --nv-info-bg: #12263A;
-  --nv-data-1: #E2E8F0;
-  --nv-data-2: #E65C00;
-  --nv-data-3: #6FA8D6;
-  --nv-data-4: #8A9AA8;
-  --nv-data-5: #9CC26A;
-  --nv-data-6: #C9A97C;
+  --nv-data-1: #E65C00;
+  --nv-data-2: #55B6BE;
+  --nv-data-3: #A0C570;
+  --nv-data-4: #679CC7;
+  --nv-data-5: #DDCAAE;
+  --nv-data-6: #E2E8F0;
   --nv-data-grid: #2A3846;
-  --nv-shadow-overlay: 0 8px 21px rgba(0, 0, 0, 0.5);
+  --nv-shadow-card: 0 2px 12px rgba(0, 0, 0, 0.55);
+  --nv-shadow-card-hover: 0 6px 20px rgba(0, 0, 0, 0.65);
+  --nv-shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.6);
   color-scheme: dark;
 }
 
@@ -154,12 +193,24 @@
     --nv-ink-muted: #8A9AA8;
     --nv-line: #2A3846;
     --nv-line-strong: #8A9AA8;
+    --nv-line-card: #1C2834;
     --nv-accent: #E65C00;
     --nv-accent-hover: #FF7A1F;
     --nv-on-accent: #0A1118;
+    --nv-accent-fill: #E65C00;
+    --nv-accent-fill-hover: #FF7A1F;
+    --nv-on-accent-fill: #0A1118;
+    --nv-accent-text: #FF8A3D;
     --nv-focus: #E65C00;
     --nv-link: #E2E8F0;
     --nv-link-hover: #FF8A3D;
+    --nv-glaciar: #4FB3BC;
+    --nv-glaciar-ink: #7FD0D7;
+    --nv-glaciar-bg: #0F2C30;
+    --nv-glaciar-line: #24555B;
+    --nv-lenga: #9CC26A;
+    --nv-lenga-ink: #B5D68A;
+    --nv-lenga-bg: #1A2A12;
     --nv-success: #5CC48E;
     --nv-success-bg: #10291D;
     --nv-warning: #E8B44C;
@@ -168,14 +219,16 @@
     --nv-danger-bg: #331417;
     --nv-info: #7FB2E0;
     --nv-info-bg: #12263A;
-    --nv-data-1: #E2E8F0;
-    --nv-data-2: #E65C00;
-    --nv-data-3: #6FA8D6;
-    --nv-data-4: #8A9AA8;
-    --nv-data-5: #9CC26A;
-    --nv-data-6: #C9A97C;
+    --nv-data-1: #E65C00;
+    --nv-data-2: #55B6BE;
+    --nv-data-3: #A0C570;
+    --nv-data-4: #679CC7;
+    --nv-data-5: #DDCAAE;
+    --nv-data-6: #E2E8F0;
     --nv-data-grid: #2A3846;
-    --nv-shadow-overlay: 0 8px 21px rgba(0, 0, 0, 0.5);
+    --nv-shadow-card: 0 2px 12px rgba(0, 0, 0, 0.55);
+    --nv-shadow-card-hover: 0 6px 20px rgba(0, 0, 0, 0.65);
+    --nv-shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
 }
