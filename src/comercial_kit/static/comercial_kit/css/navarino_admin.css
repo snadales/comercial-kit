@@ -1,185 +1,169 @@
+/* Navarino — tema del admin de Django.
+   Requiere navarino-tokens.css (lo carga admin/base_site.html). Solo consume
+   variables --nv-*: Día por defecto y Nocturno con data-theme="nocturno".
+   Se mapean las variables propias del admin a los tokens, en vez de fijar colores. */
+
 :root {
-  --nav-surface: #0A1118;
-  --nav-surface-raised: #1A2531;
-  --nav-ink: #E2E8F0;
-  --nav-ink-muted: #8A9AA8;
-  --nav-line: #2A3846;
-  --nav-line-strong: #8A9AA8;
-  --nav-accent: #E65C00;
-  --nav-accent-deep: #B84A00;
-  --nav-on-accent: #FFFFFF;
+  --font-family-primary: var(--nv-font-sans);
+  --font-family-monospace: var(--nv-font-mono);
+
+  --primary: var(--nv-surface-raised);
+  --secondary: var(--nv-surface-raised);
+  --accent: var(--nv-accent);
+  --primary-fg: var(--nv-ink);
+
+  --body-fg: var(--nv-ink);
+  --body-bg: var(--nv-surface);
+  --body-quiet-color: var(--nv-ink-muted);
+  --body-medium-color: var(--nv-ink-muted);
+  --body-loud-color: var(--nv-ink);
+
+  --header-color: var(--nv-ink);
+  --header-branding-color: var(--nv-ink);
+  --header-bg: var(--nv-surface);
+  --header-link-color: var(--nv-ink);
+
+  --breadcrumbs-fg: var(--nv-ink-muted);
+  --breadcrumbs-link-fg: var(--nv-ink);
+  --breadcrumbs-bg: var(--nv-surface-sunken);
+
+  --link-fg: var(--nv-link);
+  --link-hover-color: var(--nv-link-hover);
+  --link-selected-fg: var(--nv-ink);
+
+  --hairline-color: var(--nv-line);
+  --border-color: var(--nv-line-strong);
+
+  --error-fg: var(--nv-danger);
+  --message-success-bg: var(--nv-success-bg);
+  --message-warning-bg: var(--nv-warning-bg);
+  --message-error-bg: var(--nv-danger-bg);
+
+  --darkened-bg: var(--nv-surface-sunken);
+  --selected-bg: var(--nv-surface-raised);
+  --selected-row: var(--nv-surface-raised);
+
+  --button-fg: var(--nv-ink);
+  --button-bg: var(--nv-surface-raised);
+  --button-hover-bg: var(--nv-line);
+  --default-button-bg: var(--nv-accent);
+  --default-button-hover-bg: var(--nv-accent-hover);
+  --close-button-bg: var(--nv-surface-raised);
+  --close-button-hover-bg: var(--nv-line);
+  --delete-button-bg: var(--nv-danger);
+  --delete-button-hover-bg: var(--nv-danger);
+
+  --object-tools-fg: var(--nv-ink);
+  --object-tools-bg: var(--nv-surface-raised);
+  --object-tools-hover-bg: var(--nv-line);
 }
 
-/* Reset de sombras y degradados según directriz Navarino */
+/* Sin sombras ni degradados (solo menús, diálogos y toasts usan --nv-shadow-overlay) */
 * {
   box-shadow: none !important;
   text-shadow: none !important;
 }
+.calendarbox, .clockbox, .select2-dropdown, .selector-chooser {
+  box-shadow: var(--nv-shadow-overlay) !important;
+}
 
 body {
-  background-color: var(--nav-surface) !important;
-  color: var(--nav-ink) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  background-color: var(--nv-surface);
+  color: var(--nv-ink);
+  font-family: var(--nv-font-sans);
+}
+
+h1, h2, #site-name, #content h1 {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-medium);
 }
 
 #header {
-  background-color: var(--nav-surface-raised) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-  color: var(--nav-ink) !important;
-  padding: 12px 24px !important;
+  background-color: var(--nv-surface);
+  border-bottom: var(--nv-border-hairline) solid var(--nv-line);
+  color: var(--nv-ink);
+  padding: var(--nv-space-13) var(--nv-space-21);
 }
 
-#header a:link, #header a:visited {
-  color: var(--nav-ink) !important;
+#branding h1, #site-name { display: flex; align-items: center; margin: 0; }
+
+.navarino-logo { display: inline-flex; align-items: center; line-height: 0; }
+.navarino-logo-img { height: 46px; width: auto; display: block; }
+.navarino-logo-img.navarino-logo-negativo { height: calc(46px * 108.258 / 76.258); margin: calc(-46px * 16 / 76.258); }
+.navarino-logo-negativo { display: none; }
+:root[data-theme="nocturno"] .navarino-logo-positivo { display: none; }
+:root[data-theme="nocturno"] .navarino-logo-negativo { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .navarino-logo-positivo { display: none; }
+  :root[data-theme="auto"] .navarino-logo-negativo { display: block; }
 }
 
-#branding h1 {
-  display: flex !important;
-  align-items: center !important;
-  margin: 0 !important;
+/* El interruptor de Django depende de su propio modo oscuro, que aquí se desactiva */
+.theme-toggle { display: none !important; }
+.navarino-theme-toggle {
+  margin-left: var(--nv-space-8);
+  padding: 2px var(--nv-space-8);
+  font: inherit;
+  color: var(--nv-ink);
+  background: var(--nv-surface);
+  border: var(--nv-border-hairline) solid var(--nv-line-strong);
+  border-radius: var(--nv-radius-3);
+  cursor: pointer;
 }
-
-.navarino-logo-img {
-  height: 38px;
-  width: auto;
-  display: inline-block;
-  vertical-align: middle;
-}
+.navarino-theme-toggle:hover { background: var(--nv-surface-raised); }
 
 div.breadcrumbs {
-  background-color: var(--nav-surface) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-  color: var(--nav-ink-muted) !important;
-  padding: 10px 24px !important;
+  border-bottom: var(--nv-border-hairline) solid var(--nv-line);
+  padding: var(--nv-space-8) var(--nv-space-21);
 }
 
-div.breadcrumbs a {
-  color: var(--nav-ink) !important;
+.module { border: var(--nv-border-hairline) solid var(--nv-line); border-radius: var(--nv-radius-0); }
+.module h2, .module caption, .inline-group h2 {
+  background-color: var(--nv-surface-raised);
+  color: var(--nv-ink);
+  font-weight: var(--nv-weight-semibold);
 }
 
-#content {
-  background-color: var(--nav-surface) !important;
-  color: var(--nav-ink) !important;
-  padding: 24px !important;
-}
-
-.module {
-  background-color: var(--nav-surface-raised) !important;
-  border: 1px solid var(--nav-line) !important;
-  border-radius: 4px !important;
-  margin-bottom: 20px !important;
-}
-
-.module h2, .module caption {
-  background-color: var(--nav-surface-raised) !important;
-  color: var(--nav-ink) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-  font-weight: 600 !important;
-}
-
-/* Tablas y listados */
-#changelist {
-  background-color: transparent !important;
-}
-
-#changelist table {
-  background-color: var(--nav-surface-raised) !important;
-  border: 1px solid var(--nav-line) !important;
-}
-
-#changelist table thead th {
-  background-color: var(--nav-surface-raised) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-  color: var(--nav-ink) !important;
-}
-
-#changelist table tbody tr {
-  background-color: var(--nav-surface-raised) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-}
-
-#changelist table tbody tr:nth-child(even) {
-  background-color: #151E28 !important;
-}
-
-#changelist table tbody tr:hover {
-  background-color: #202D3C !important;
-}
-
-#changelist table td, #changelist table th {
-  border-color: var(--nav-line) !important;
-  color: var(--nav-ink) !important;
-}
-
-#changelist-filter {
-  background-color: var(--nav-surface-raised) !important;
-  border-left: 1px solid var(--nav-line) !important;
-}
-
-#changelist-filter h2 {
-  background-color: var(--nav-surface-raised) !important;
-  color: var(--nav-ink) !important;
-  border-bottom: 1px solid var(--nav-line) !important;
-}
-
-#changelist-filter a {
-  color: var(--nav-ink-muted) !important;
-}
-
-#changelist-filter li.selected a {
-  color: var(--nav-accent) !important;
-  font-weight: bold !important;
-}
+/* Tablas: sin cebra, filetes horizontales */
+#changelist table tbody tr,
+#changelist table tbody tr:nth-child(even),
+table tbody tr:nth-child(even) { background-color: transparent; }
+table td, table th { border-bottom: var(--nv-border-hairline) solid var(--nv-line); }
+#changelist table tbody tr:hover { background-color: var(--nv-surface-sunken); }
+#changelist-filter { border-left: var(--nv-border-hairline) solid var(--nv-line); }
+#changelist-filter li.selected a { color: var(--nv-ink); font-weight: var(--nv-weight-semibold); }
 
 /* Formularios */
-.form-row {
-  border-bottom: 1px solid var(--nav-line) !important;
+input[type="text"], input[type="password"], input[type="email"], input[type="url"],
+input[type="number"], input[type="search"], textarea, select, .vTextField {
+  background-color: var(--nv-surface);
+  border: var(--nv-border-hairline) solid var(--nv-line-strong);
+  color: var(--nv-ink);
+  border-radius: var(--nv-radius-3);
 }
 
-input[type="text"], input[type="password"], input[type="email"],
-input[type="url"], input[type="number"], textarea, select {
-  background-color: var(--nav-surface) !important;
-  border: 1px solid var(--nav-line-strong) !important;
-  color: var(--nav-ink) !important;
-  border-radius: 3px !important;
-  padding: 6px 10px !important;
-}
-
+:focus-visible,
 input:focus, textarea:focus, select:focus {
-  border-color: var(--nav-accent) !important;
-  outline: 1px solid var(--nav-accent) !important;
+  outline: var(--nv-border-focus) solid var(--nv-focus);
+  outline-offset: 2px;
 }
 
-/* Botones: accent una sola vez por vista */
-.button, input[type="submit"], input[type="button"], .submit-row input.default {
-  background-color: var(--nav-accent) !important;
-  color: var(--nav-on-accent) !important;
-  border: none !important;
-  border-radius: 3px !important;
-  padding: 8px 16px !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
+/* Botones: el acento solo en el botón principal (guardar) */
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button {
+  border-radius: var(--nv-radius-3);
+  font-weight: var(--nv-weight-semibold);
 }
-
-.button:hover, input[type="submit"]:hover, input.default:hover {
-  background-color: var(--nav-accent-deep) !important;
+.button.default, input[type="submit"].default, .submit-row input.default {
+  background-color: var(--nv-accent);
+  color: var(--nv-on-accent);
 }
-
+.button.default:hover, input[type="submit"].default:hover, .submit-row input.default:hover {
+  background-color: var(--nv-accent-hover);
+}
 .submit-row a.deletelink {
-  background-color: #6B1D1D !important;
-  color: #FFFFFF !important;
-  border-radius: 3px !important;
+  background-color: var(--nv-danger);
+  color: var(--nv-surface);
+  border-radius: var(--nv-radius-3);
 }
 
-/* Enlaces */
-a:link, a:visited {
-  color: var(--nav-ink) !important;
-}
-
-a:hover {
-  color: var(--nav-accent) !important;
-}
-
-.help, p.help {
-  color: var(--nav-ink-muted) !important;
-}
+.help, p.help, div.help { color: var(--nv-ink-muted); }

@@ -3,20 +3,36 @@
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Navarino Servicios Comerciales{% endblock %}
 
+{% block dark-mode-vars %}
+  {# Reemplaza el modo oscuro propio de Django: el tema lo dan los tokens Navarino (Día por defecto). #}
+  <script>
+    try {
+      var nvTema = window.localStorage.getItem("nv-theme");
+      if (nvTema === "nocturno" || nvTema === "auto") document.documentElement.setAttribute("data-theme", nvTema);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="{% static 'comercial_kit/css/navarino-tokens.css' %}">
+{% endblock %}
+
 {% block extrahead %}
   {{ block.super }}
+  <link rel="icon" type="image/svg+xml" href="{% static 'comercial_kit/marca/navarino-favicon.svg' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'comercial_kit/css/navarino_admin.css' %}">
+  <script src="{% static 'comercial_kit/js/navarino-tema.js' %}" defer></script>
 {% endblock %}
 
 {% block branding %}
 <div id="site-name">
-  <a href="{% url 'admin:index' %}">
-    <img src="/marca-navarino/navarino-logo-negativo.svg"
-         onerror="this.onerror=null;this.src='{% static 'comercial_kit/svg/navarino-logo-negativo.svg' %}';"
-         alt="Navarino"
-         class="navarino-logo-img">
+  <a href="{% url 'admin:index' %}" class="navarino-logo">
+    <img src="{% static 'comercial_kit/marca/navarino-logo-positivo.svg' %}" alt="Navarino" class="navarino-logo-img navarino-logo-positivo">
+    <img src="{% static 'comercial_kit/marca/navarino-logo-negativo.svg' %}" alt="Navarino" class="navarino-logo-img navarino-logo-negativo">
   </a>
 </div>
+{% endblock %}
+
+{% block userlinks %}
+  {{ block.super }}
+  <button type="button" class="navarino-theme-toggle" data-nv-theme-toggle aria-pressed="false">Tema nocturno</button>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
