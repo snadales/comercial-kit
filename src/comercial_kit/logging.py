@@ -39,7 +39,7 @@ class JsonFormatter(logging.Formatter):
         if record.exc_info:
             log_data["excepcion"] = self.formatException(record.exc_info)
 
-        return json.dumps(log_data, ensure_ascii=False)
+        return json.dumps(log_data, ensure_ascii=False, default=str)
 
 
 class DynamicLogLevelFilter(logging.Filter):
