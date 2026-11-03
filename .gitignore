@@ -9,3 +9,11 @@ node_modules/
 .claude/settings.local.json
 .playwright-mcp/
 *.bak
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+

@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Navarino Servicios Comerciales{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'comercial_kit/css/navarino_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+  <a href="{% url 'admin:index' %}">
+    <img src="/marca-navarino/navarino-logo-negativo.svg"
+         onerror="this.onerror=null;this.src='{% static 'comercial_kit/svg/navarino-logo-negativo.svg' %}';"
+         alt="Navarino"
+         class="navarino-logo-img">
+  </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
