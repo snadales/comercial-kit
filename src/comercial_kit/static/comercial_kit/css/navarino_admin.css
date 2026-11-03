@@ -1,0 +1,185 @@
+:root {
+  --nav-surface: #0A1118;
+  --nav-surface-raised: #1A2531;
+  --nav-ink: #E2E8F0;
+  --nav-ink-muted: #8A9AA8;
+  --nav-line: #2A3846;
+  --nav-line-strong: #8A9AA8;
+  --nav-accent: #E65C00;
+  --nav-accent-deep: #B84A00;
+  --nav-on-accent: #FFFFFF;
+}
+
+/* Reset de sombras y degradados según directriz Navarino */
+* {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body {
+  background-color: var(--nav-surface) !important;
+  color: var(--nav-ink) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+#header {
+  background-color: var(--nav-surface-raised) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+  color: var(--nav-ink) !important;
+  padding: 12px 24px !important;
+}
+
+#header a:link, #header a:visited {
+  color: var(--nav-ink) !important;
+}
+
+#branding h1 {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+.navarino-logo-img {
+  height: 38px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div.breadcrumbs {
+  background-color: var(--nav-surface) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+  color: var(--nav-ink-muted) !important;
+  padding: 10px 24px !important;
+}
+
+div.breadcrumbs a {
+  color: var(--nav-ink) !important;
+}
+
+#content {
+  background-color: var(--nav-surface) !important;
+  color: var(--nav-ink) !important;
+  padding: 24px !important;
+}
+
+.module {
+  background-color: var(--nav-surface-raised) !important;
+  border: 1px solid var(--nav-line) !important;
+  border-radius: 4px !important;
+  margin-bottom: 20px !important;
+}
+
+.module h2, .module caption {
+  background-color: var(--nav-surface-raised) !important;
+  color: var(--nav-ink) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+  font-weight: 600 !important;
+}
+
+/* Tablas y listados */
+#changelist {
+  background-color: transparent !important;
+}
+
+#changelist table {
+  background-color: var(--nav-surface-raised) !important;
+  border: 1px solid var(--nav-line) !important;
+}
+
+#changelist table thead th {
+  background-color: var(--nav-surface-raised) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+  color: var(--nav-ink) !important;
+}
+
+#changelist table tbody tr {
+  background-color: var(--nav-surface-raised) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+}
+
+#changelist table tbody tr:nth-child(even) {
+  background-color: #151E28 !important;
+}
+
+#changelist table tbody tr:hover {
+  background-color: #202D3C !important;
+}
+
+#changelist table td, #changelist table th {
+  border-color: var(--nav-line) !important;
+  color: var(--nav-ink) !important;
+}
+
+#changelist-filter {
+  background-color: var(--nav-surface-raised) !important;
+  border-left: 1px solid var(--nav-line) !important;
+}
+
+#changelist-filter h2 {
+  background-color: var(--nav-surface-raised) !important;
+  color: var(--nav-ink) !important;
+  border-bottom: 1px solid var(--nav-line) !important;
+}
+
+#changelist-filter a {
+  color: var(--nav-ink-muted) !important;
+}
+
+#changelist-filter li.selected a {
+  color: var(--nav-accent) !important;
+  font-weight: bold !important;
+}
+
+/* Formularios */
+.form-row {
+  border-bottom: 1px solid var(--nav-line) !important;
+}
+
+input[type="text"], input[type="password"], input[type="email"],
+input[type="url"], input[type="number"], textarea, select {
+  background-color: var(--nav-surface) !important;
+  border: 1px solid var(--nav-line-strong) !important;
+  color: var(--nav-ink) !important;
+  border-radius: 3px !important;
+  padding: 6px 10px !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--nav-accent) !important;
+  outline: 1px solid var(--nav-accent) !important;
+}
+
+/* Botones: accent una sola vez por vista */
+.button, input[type="submit"], input[type="button"], .submit-row input.default {
+  background-color: var(--nav-accent) !important;
+  color: var(--nav-on-accent) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 8px 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.button:hover, input[type="submit"]:hover, input.default:hover {
+  background-color: var(--nav-accent-deep) !important;
+}
+
+.submit-row a.deletelink {
+  background-color: #6B1D1D !important;
+  color: #FFFFFF !important;
+  border-radius: 3px !important;
+}
+
+/* Enlaces */
+a:link, a:visited {
+  color: var(--nav-ink) !important;
+}
+
+a:hover {
+  color: var(--nav-accent) !important;
+}
+
+.help, p.help {
+  color: var(--nav-ink-muted) !important;
+}
