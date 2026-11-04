@@ -27,3 +27,5 @@ Solo 4 variables obligatorias:
 - `DJANGO_SECRET_KEY`
 - `OP_CONNECT_TOKEN`
 - `PUBLIC_HOST`
+
+- **K8 Arranque sin .env:** `comercial_kit.arranque.cargar_secretos({"DATABASE_URL": "op://IA/<item>/<campo>", ...})` lee el Docker secret `/run/secrets/op_connect_token` y resuelve en memoria `DATABASE_URL`, `DJANGO_SECRET_KEY` y `CLAVE_MAESTRA_CIFRADO` desde 1Password Connect (`OP_CONNECT_HOST`, por nombre). Reintenta con backoff y lanza `ArranqueError` si Connect no responde. Sin secret, usa variables de entorno (retrocompatible).
