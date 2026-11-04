@@ -24,10 +24,10 @@ def parse_op_reference(ref: str) -> tuple[str, str, str]:
     return match.group(1), match.group(2), match.group(3)
 
 
-def get_connect_config() -> tuple[str, str]:
-    """Obtiene host y token de 1Password Connect."""
-    token = os.environ.get("OP_CONNECT_TOKEN", "").strip()
-    host = os.environ.get("OP_CONNECT_HOST", "http://192.168.60.25:8080").rstrip("/")
+def get_connect_config(token: str | None = None, host: str | None = None) -> tuple[str, str]:
+    """Obtiene host y token de 1Password Connect (argumentos explícitos tienen prioridad)."""
+    token = (token if token is not None else os.environ.get("OP_CONNECT_TOKEN", "")).strip()
+    host = (host or os.environ.get("OP_CONNECT_HOST") or "http://op-connect:8080").rstrip("/")
     return host, token
 
 
@@ -41,7 +41,7 @@ def set_mock_secret(ref: str, value: str):
     _CACHE[ref] = value
 
 
-def resolve_op_reference(ref: str, use_cache: bool = True) -> str:
+def resolve_op_reference(ref: str, use_cache: bool = True, token: str | None = None, host: str | None = None) -> str:
     """Resuelve una referencia op:// usando Connect API con caché en memoria.
     
     NUNCA imprime ni loguea el valor del secreto.
@@ -53,7 +53,7 @@ def resolve_op_reference(ref: str, use_cache: bool = True) -> str:
         return _CACHE[ref]
 
     vault_name, item_title, field_label = parse_op_reference(ref)
-    host, token = get_connect_config()
+    host, token = get_connect_config(token=token, host=host)
 
     if not token:
         logger.warning("OP_CONNECT_TOKEN no configurado; no se puede resolver %s", ref)
