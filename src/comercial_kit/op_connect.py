@@ -7,7 +7,7 @@ import requests
 
 logger = logging.getLogger("comercial_kit.op_connect")
 
-_CACHE: dict[str, str] = {}
+_CACHE: dict = {}
 _OP_REGEX = re.compile(r"^op://([^/]+)/([^/]+)/(.+)$")
 
 
@@ -27,7 +27,7 @@ def parse_op_reference(ref: str) -> tuple[str, str, str]:
 def get_connect_config(token: str | None = None, host: str | None = None) -> tuple[str, str]:
     """Obtiene host y token de 1Password Connect (argumentos explícitos tienen prioridad)."""
     token = (token if token is not None else os.environ.get("OP_CONNECT_TOKEN", "")).strip()
-    host = (host or os.environ.get("OP_CONNECT_HOST") or "http://op-connect:8080").rstrip("/")
+    host = (host or os.environ.get("OP_CONNECT_HOST") or "http://host.docker.internal:8080").rstrip("/")
     return host, token
 
 
@@ -41,8 +41,10 @@ def set_mock_secret(ref: str, value: str):
     _CACHE[ref] = value
 
 
-def resolve_op_reference(ref: str, use_cache: bool = True, token: str | None = None, host: str | None = None) -> str:
+def resolve_op_reference(ref: str, use_cache: bool = True, token: str | None = None, host: str | None = None) -> "str | dict":
     """Resuelve una referencia op:// usando Connect API con caché en memoria.
+
+    `op://<bóveda>/<ítem>/*` devuelve {campo: valor}; `op://<bóveda>/<ítem>/<campo>` devuelve el valor.
     
     NUNCA imprime ni loguea el valor del secreto.
     """
@@ -98,6 +100,12 @@ def resolve_op_reference(ref: str, use_cache: bool = True, token: str | None = N
         detail_resp = requests.get(f"{host}/v1/vaults/{vault_id}/items/{item_id}", headers=headers, timeout=5)
         detail_resp.raise_for_status()
         detail = detail_resp.json()
+
+        if field_label == "*":
+            # Contrato mercados: todos los campos con valor del ítem, {etiqueta: valor}.
+            todos = {(f.get("label") or f.get("id")): f["value"] for f in detail.get("fields", []) if f.get("value") is not None}
+            _CACHE[ref] = todos
+            return todos
 
         value = None
         for f in detail.get("fields", []):
