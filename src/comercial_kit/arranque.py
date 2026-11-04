@@ -63,3 +63,33 @@ def cargar_secretos(
                 dormir(espera)
                 espera = min(espera * 2, 30.0)
     return resueltos
+
+
+def leer_secretos(ruta_token: str, referencias: list[str], **kwargs) -> dict:
+    """Contrato de `mercados` (config/connect.py, probado en producción): {referencia: valor | {campo: valor}}.
+
+    Lee el token del Docker secret en `ruta_token` (falla si falta o está vacío), resuelve cada
+    `op://<bóveda>/<ítem>/<campo>` (o `/*` para todos los campos del ítem) con reintento y backoff,
+    y devuelve el resultado indexado por la referencia misma. Host por defecto
+    `http://host.docker.internal:8080` (el nombre `op-connect` no resuelve desde red-comercial).
+    """
+    token = leer_token(ruta_token)
+    if token is None:
+        raise ArranqueError("Docker secret op_connect_token vacío o ausente")
+    resueltos: dict = {}
+    for ref in referencias:
+        resueltos.update(_resolver(ref, token, **kwargs))
+    return resueltos
+
+
+def _resolver(ref: str, token: str, host: str | None = None, intentos: int = 5, espera_inicial: float = 1.0,
+              dormir=time.sleep) -> dict:
+    espera = espera_inicial
+    for intento in range(1, intentos + 1):
+        try:
+            return {ref: resolve_op_reference(ref, token=token, host=host)}
+        except ConnectError as exc:
+            if intento == intentos:
+                raise ArranqueError(f"No se pudo resolver {ref} desde 1Password Connect") from exc
+            dormir(espera)
+            espera = min(espera * 2, 30.0)

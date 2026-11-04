@@ -119,3 +119,32 @@ def test_integracion_con_requests_simulado(secret):
     assert out == {"DJANGO_SECRET_KEY": "django-xyz"}
     assert g.call_args_list[0].args[0] == "http://connect:8080/v1/vaults"
     assert g.call_args_list[0].kwargs["headers"]["Authorization"] == "Bearer tok-secreto"
+
+
+def test_leer_secretos_contrato_mercados(secret):
+    """Contrato de mercados: referencias en lista, resultado indexado por referencia; `/*` devuelve dict."""
+    from comercial_kit.arranque import leer_secretos
+
+    ref_bd = "op://IA/zbook_comercialdb_mercados/*"
+    ref_dj = "op://IA/zbook_mercados_django/clave"
+
+    def falso(ref, **_):
+        return {"host": "h", "password": "p"} if ref.endswith("/*") else "django-xyz"
+
+    with patch("comercial_kit.arranque.resolve_op_reference", side_effect=falso):
+        out = leer_secretos(secret, [ref_bd, ref_dj])
+    assert out == {ref_bd: {"host": "h", "password": "p"}, ref_dj: "django-xyz"}
+
+
+def test_leer_secretos_sin_secret_falla(tmp_path):
+    from comercial_kit.arranque import leer_secretos
+
+    with pytest.raises(ArranqueError):
+        leer_secretos(str(tmp_path / "no_existe"), ["op://IA/x/y"])
+
+
+def test_host_por_defecto_resuelve_desde_red_comercial(monkeypatch):
+    from comercial_kit.op_connect import get_connect_config
+
+    monkeypatch.delenv("OP_CONNECT_HOST", raising=False)
+    assert get_connect_config(token="t")[0] == "http://host.docker.internal:8080"
