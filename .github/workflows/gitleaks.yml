@@ -1,0 +1,13 @@
+name: gitleaks
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+permissions:
+  contents: read
+jobs:
+  gitleaks:
+    uses: snadales/.github/.github/workflows/gitleaks.yml@main
+    with:
+      runner: self-hosted
+      continue-on-error: true
