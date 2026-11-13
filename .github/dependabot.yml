@@ -1,0 +1,29 @@
+# Estándar snadales/.github (YarkenSystem#1188 F5): actualizaciones semanales agrupadas, solo parches y menores
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 3
+    labels: ["deuda"]
+    groups:
+      all:
+        patterns: ["*"]
+        update-types: ["minor","patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 3
+    labels: ["deuda"]
+    groups:
+      all:
+        patterns: ["*"]
+        update-types: ["minor","patch"]
