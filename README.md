@@ -13,7 +13,7 @@ Paquete Django reusable, instalable por pip desde tag de git (`v1.0.0`).
 | `_archive/` | Histórico archivado |
 
 ## Estándar K1–K7
-- **K1 Tema Navarino Nocturno:** Tokens de color (`beagle`, `basalto`, `acero`, `niebla`, `senal`), proporciones 60/30/10, logo SVG desde `/marca-navarino/`, sin sombras ni degradados.
+- **K1 Tema Navarino (Día por defecto, Nocturno opcional):** tokens `--nv-*` en `static/comercial_kit/css/navarino-tokens.css` (y su espejo `navarino-tokens.json`, generado con `scripts/generar_tokens_json.py`), componentes `nv-` en `navarino-componentes.css`, logos oficiales en `static/comercial_kit/marca/` verificados con `SHA256SUMS`. `data-theme="nocturno"` fuerza Nocturno y `data-theme="auto"` sigue al sistema; el interruptor guarda la preferencia en `localStorage` (`nv-theme`). Sin sombras salvo menús, diálogos y avisos flotantes; sin degradados. Muestra en `docs/muestra-brandbook.html` y capturas en `docs/capturas/`.
 - **K2 API & DRF:** Prefijo `/v1`, OpenAPI con drf-spectacular en `/v1/docs`, errores RFC 9457 `application/problem+json` con `trace_id`, tokens por consumidor con hash SHA-256.
 - **K3 Trazabilidad:** OpenTelemetry con propagación W3C `traceparent` de entrada y salida, e integración con `django-simple-history`.
 - **K4 Logging:** JSON estructurado a stdout (un evento por línea) con `trace_id`, `span_id` y `ts` ISO 8601.

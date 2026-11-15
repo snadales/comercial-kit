@@ -33,4 +33,12 @@ comercial_kit = [
     "templates/**/*.html",
     "static/**/*.css",
     "static/**/*.svg",
+    "static/**/*.png",
+    "static/**/*.json",
+    "static/**/*.js",
+    "static/**/SHA256SUMS",
 ]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.test_settings"
+pythonpath = [".", "src", "tests"]

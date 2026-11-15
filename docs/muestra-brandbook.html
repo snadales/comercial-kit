@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navarino · Muestra del brandbook web</title>
+  <link rel="icon" type="image/svg+xml" href="../src/comercial_kit/static/comercial_kit/marca/navarino-favicon.svg">
+  <script>
+    /* Tema Día por defecto; ?tema=nocturno fuerza Nocturno (útil para capturas). */
+    (function () {
+      var t = null;
+      try { t = new URLSearchParams(location.search).get("tema"); } catch (e) {}
+      if (!t) { try { t = window.localStorage.getItem("nv-theme"); } catch (e) {} }
+      if (t === "nocturno" || t === "auto") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../src/comercial_kit/static/comercial_kit/css/navarino-tokens.css">
+  <link rel="stylesheet" href="../src/comercial_kit/static/comercial_kit/css/navarino-componentes.css">
+  <script src="../src/comercial_kit/static/comercial_kit/js/navarino-tema.js" defer></script>
+  <style>
+    /* Solo para esta página de muestra: estados forzados y fichas del brandbook. */
+    .m-section { padding: var(--nv-space-55) 0 var(--nv-space-34); border-top: var(--nv-border-hairline) solid var(--nv-line); }
+    .m-section:first-of-type { border-top: 0; padding-top: var(--nv-space-21); }
+    .m-sub { margin: var(--nv-space-34) 0 var(--nv-space-13); }
+    .m-note { color: var(--nv-ink-muted); font-size: var(--nv-text-body-sm); line-height: var(--nv-lh-body-sm); max-width: 70ch; }
+    .m-matrix { max-width: 100%; display: grid; grid-template-columns: max-content repeat(4, max-content); gap: var(--nv-space-13) var(--nv-space-21); align-items: center; overflow-x: auto; padding: var(--nv-space-5) var(--nv-space-5) var(--nv-space-8); }
+    .m-matrix .nv-caption { margin: 0; }
+    /* En pantallas angostas la matriz se desplaza dentro de su caja, nunca la página */
+
+    .is-hover.nv-btn--primary { --_bg: var(--nv-accent-fill-hover); --_bd: var(--nv-accent-fill-hover); box-shadow: var(--nv-shadow-card-hover); }
+    .is-active.nv-btn--primary { --_bg: var(--nv-accent-fill); box-shadow: none; }
+    .is-hover.nv-btn--secondary { --_bg: var(--nv-glaciar-bg); }
+    .is-active.nv-btn--secondary { --_bg: var(--nv-glaciar-bg); --_bd: var(--nv-glaciar); }
+    .is-hover.nv-btn--ghost { --_bg: var(--nv-surface-raised); }
+    .is-active.nv-btn--ghost { --_bg: var(--nv-line); }
+    .is-hover.nv-btn--danger { --_bg: color-mix(in srgb, var(--nv-danger) 85%, var(--nv-ink)); }
+    .is-active.nv-btn--danger { --_bg: color-mix(in srgb, var(--nv-danger) 72%, var(--nv-ink)); }
+    .is-focus { outline: var(--nv-border-focus) solid var(--nv-focus); outline-offset: 2px; }
+    .is-focus.nv-input { border-color: var(--nv-glaciar); }
+
+    /* Logos y zona de exclusión (resguardo x = 20 u por lado; caja 200,4 × 76,3 u) */
+    .m-logos { display: grid; gap: var(--nv-space-21); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+    .m-logo-panel { border: var(--nv-border-hairline) solid var(--nv-line-card); border-radius: var(--nv-radius-card); box-shadow: var(--nv-shadow-card); padding: var(--nv-space-34) var(--nv-space-21); display: flex; flex-direction: column; align-items: center; gap: var(--nv-space-13); }
+    .m-logo-panel--blanco { background: var(--nv-blanco); }
+    .m-logo-panel--beagle { background: var(--nv-beagle); border-color: var(--nv-beagle); }
+    .m-logo-panel .nv-caption { color: var(--nv-acero); }
+    .m-logo-panel--blanco .nv-caption { color: #4D5B68; }
+    .m-zona { --_w: 240px; outline: 1px dashed var(--nv-senal); outline-offset: 0; padding: calc(var(--_w) * 20 / 200.361); }
+    .m-zona img { width: var(--_w); height: auto; outline: 1px solid color-mix(in srgb, var(--nv-acero) 60%, transparent); }
+    /* El negativo trae 16 u de margen propio: el resguardo restante es 4 u */
+    .m-zona--neg { padding: calc(var(--_w) * 4 / 200.361); }
+    .m-zona--neg img { width: calc(var(--_w) * 232.361 / 200.361); outline: 0; }
+    .m-isos { display: flex; gap: var(--nv-space-21); align-items: flex-end; flex-wrap: wrap; justify-content: center; }
+    .m-isos figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: var(--nv-space-5); }
+
+    /* Paleta */
+    .m-swatches { display: grid; gap: var(--nv-space-13); grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+    .m-swatch { background: var(--nv-surface); border: var(--nv-border-hairline) solid var(--nv-line-card); border-radius: var(--nv-radius-card); box-shadow: var(--nv-shadow-card); overflow: hidden; min-width: 0; }
+    .m-swatch__chip { height: 55px; border-bottom: var(--nv-border-hairline) solid var(--nv-line); }
+    .m-swatch__body { padding: var(--nv-space-8) var(--nv-space-13); font-size: var(--nv-text-caption); line-height: var(--nv-lh-caption); }
+    .m-swatch__name { font-family: var(--nv-font-mono); font-weight: var(--nv-weight-medium); display: block; overflow-wrap: anywhere; }
+    .m-swatch__meta { color: var(--nv-ink-muted); font-family: var(--nv-font-mono); display: block; }
+
+    /* Tipografía, espaciado y radios */
+    .m-type-row { display: grid; grid-template-columns: minmax(0, 160px) 1fr; gap: var(--nv-space-13); align-items: baseline; padding: var(--nv-space-13) 0; border-bottom: var(--nv-border-hairline) solid var(--nv-line); }
+    .m-type-row > :last-child { margin: 0; overflow-wrap: anywhere; min-width: 0; }
+    @media (max-width: 599px) { .m-type-row { grid-template-columns: 1fr; gap: var(--nv-space-3); } }
+    .m-space { display: flex; align-items: center; gap: var(--nv-space-13); font-size: var(--nv-text-caption); padding: var(--nv-space-3) 0; }
+    .m-space__bar { height: 13px; background: var(--nv-ink); flex: none; }
+    .m-space__label { font-family: var(--nv-font-mono); width: 120px; flex: none; color: var(--nv-ink-muted); }
+    .m-radii { display: flex; gap: var(--nv-space-21); flex-wrap: wrap; }
+    .m-radius { width: 89px; height: 55px; border: 1.5px solid var(--nv-glaciar); background: var(--nv-glaciar-bg); }
+    .m-icons { display: flex; flex-wrap: wrap; gap: var(--nv-space-21); color: var(--nv-ink); }
+  </style>
+</head>
+<body>
+  <a class="nv-visually-hidden" href="#contenido">Ir al contenido</a>
+  <header class="nv-header">
+    <div class="nv-header__inner">
+      <a href="#" class="nv-logo" aria-label="Navarino, inicio">
+        <img class="nv-logo-positivo" src="../src/comercial_kit/static/comercial_kit/marca/navarino-logo-positivo.svg" alt="Navarino" width="121" height="46">
+        <img class="nv-logo-negativo" src="../src/comercial_kit/static/comercial_kit/marca/navarino-logo-negativo.svg" alt="Navarino" width="140" height="65">
+      </a>
+      <nav class="nv-topnav" aria-label="Principal">
+        <a href="#logo">Logo</a>
+        <a href="#paleta">Paleta</a>
+        <a href="#tipografia">Tipografía</a>
+        <a href="#componentes" aria-current="page">Componentes</a>
+      </nav>
+      <div class="nv-header__end">
+        <button type="button" class="nv-theme-toggle" data-nv-theme-toggle aria-pressed="false">
+          <svg class="nv-icon nv-theme-toggle__nocturno" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
+          <svg class="nv-icon nv-theme-toggle__dia" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span>Tema nocturno</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nv-container" id="contenido">
+    <section class="m-section">
+      <span class="nv-eyebrow">Brandbook web</span>
+      <h1 class="nv-display">Navarino en pantalla</h1>
+      <p class="nv-lead nv-muted">Tokens, logos y componentes para las herramientas web. Estilo D5 «Patagonia viva»: fondo glaciar, tarjetas blancas con sombra suave y esquinas redondeadas. Tema Día por defecto y Nocturno como opción.</p>
+      <p class="m-note">Esta muestra repite el botón principal para mostrar sus estados. En una vista real el naranja de relleno aparece una sola vez: en el botón principal. Glaciar y lenga son colores de apoyo.</p>
+    </section>
+
+    <!-- Logo -->
+    <section class="m-section" id="logo">
+      <span class="nv-eyebrow">Logo</span>
+      <h2>Logotipo, isotipo y favicon</h2>
+      <p class="m-note">La línea punteada marca la zona de exclusión: 20 u libres por lado. Mínimo en pantalla: 120 px de ancho para el logotipo y 16 px para el isotipo.</p>
+      <div class="m-logos">
+        <div class="m-logo-panel m-logo-panel--blanco">
+          <div class="m-zona"><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-logo-positivo.svg" alt="Logotipo Navarino en positivo"></div>
+          <span class="nv-caption">Positivo · navarino-logo-positivo.svg</span>
+        </div>
+        <div class="m-logo-panel m-logo-panel--beagle">
+          <div class="m-zona m-zona--neg"><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-logo-negativo.svg" alt="Logotipo Navarino en negativo"></div>
+          <span class="nv-caption">Negativo · navarino-logo-negativo.svg</span>
+        </div>
+        <div class="m-logo-panel m-logo-panel--blanco">
+          <div class="m-isos">
+            <figure><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-isotipo.svg" alt="Isotipo Navarino" width="89" height="89"><figcaption class="nv-caption">89 px</figcaption></figure>
+            <figure><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-isotipo.svg" alt="" width="32" height="32"><figcaption class="nv-caption">32 px</figcaption></figure>
+          </div>
+          <span class="nv-caption">Isotipo · navarino-isotipo.svg</span>
+        </div>
+        <div class="m-logo-panel m-logo-panel--beagle">
+          <div class="m-isos">
+            <figure><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-isotipo-negativo.svg" alt="Isotipo Navarino en negativo" width="89" height="89"><figcaption class="nv-caption">89 px</figcaption></figure>
+            <figure><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-favicon.svg" alt="Favicon Navarino" width="32" height="32"><figcaption class="nv-caption">Favicon 32 px</figcaption></figure>
+            <figure><img src="../src/comercial_kit/static/comercial_kit/marca/navarino-favicon.svg" alt="" width="16" height="16"><figcaption class="nv-caption">16 px</figcaption></figure>
+          </div>
+          <span class="nv-caption">Isotipo negativo y favicon</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paleta -->
+    <section class="m-section" id="paleta">
+      <span class="nv-eyebrow">Color</span>
+      <h2>Paleta</h2>
+      <p class="m-note">Los valores y ratios se leen en vivo de los tokens del tema activo. El ratio de los semánticos se mide contra <code>--nv-surface</code>; el de <code>--nv-on-accent-fill</code>, contra <code>--nv-accent-fill</code>; el de los estados y del apoyo teñido, contra su fondo; las series de datos, contra la tarjeta y contra el fondo de página.</p>
+      <h3 class="m-sub">Marca</h3>
+      <div class="m-swatches" data-swatches="marca"></div>
+      <h3 class="m-sub">Semánticos</h3>
+      <div class="m-swatches" data-swatches="semanticos"></div>
+      <h3 class="m-sub">Apoyo: glaciar y lenga</h3>
+      <div class="m-swatches" data-swatches="apoyo"></div>
+      <h3 class="m-sub">Estados</h3>
+      <div class="m-swatches" data-swatches="estados"></div>
+      <h3 class="m-sub">Datos</h3>
+      <div class="m-swatches" data-swatches="datos"></div>
+    </section>
+
+    <!-- Tipografía -->
+    <section class="m-section" id="tipografia">
+      <span class="nv-eyebrow">Tipografía</span>
+      <h2>Escala tipográfica</h2>
+      <div class="m-type-row"><span class="nv-caption nv-mono">display · Outfit 500 · 68/72</span><p class="nv-display">Hecho para el sur</p></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">h1 · Outfit 500 · 42/48</span><h1>Precios por canal</h1></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">h2 · Outfit 500 · 26/32</span><h2>Publicaciones activas</h2></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">h3 · Outfit 500 · 20/26</span><h3>Margen por marketplace</h3></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">eyebrow · Inter 600 · 12 · 0.236em</span><span class="nv-eyebrow">Resumen semanal</span></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">body-lg · Inter · 20/32</span><p class="nv-lead">Revisa los precios antes de publicar.</p></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">body · Inter · 16/26</span><p>Equipo para salir al cerro con lo justo: livianos, durables y fáciles de reparar.</p></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">body-sm · Inter · 13/21</span><p class="nv-small">Actualizado hace 5 minutos.</p></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">caption · Inter · 12/19</span><p class="nv-caption">Precios con IVA incluido.</p></div>
+      <div class="m-type-row"><span class="nv-caption nv-mono">mono · JetBrains Mono 500</span><p class="nv-mono">CAM-NIT-0001 · 800 lm · 2.300 mAh · $12.990</p></div>
+
+      <h3 class="m-sub">Íconos</h3>
+      <p class="m-note">Lineales de 1,5 px en grilla de 24 px, terminales cuadrados y uniones en ángulo.</p>
+      <div class="m-icons" aria-hidden="true">
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M3 20h18M5 20l5-9 3 5 2-3 4 7"/><path d="M14 6h3v2h-3z"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM16 16l5 5"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M12 3l10 18H2zM12 10v5M12 17v1"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v6M12 7v1"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+        <svg class="nv-icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+    </section>
+
+    <!-- Espaciado y radios -->
+    <section class="m-section" id="espaciado">
+      <span class="nv-eyebrow">Forma</span>
+      <h2>Espaciado y radios</h2>
+      <div data-spaces></div>
+      <h3 class="m-sub">Radios</h3>
+      <div class="m-radii">
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-sm)"></div><figcaption class="nv-caption nv-mono">5 px · casillas, código</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-control)"></div><figcaption class="nv-caption nv-mono">10 px · botones y campos</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-card)"></div><figcaption class="nv-caption nv-mono">12 px · tarjetas y tablas</figcaption></figure>
+        <figure style="margin:0"><div class="m-radius" style="border-radius:var(--nv-radius-full)"></div><figcaption class="nv-caption nv-mono">full · insignias y pestañas</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Componentes -->
+    <section class="m-section" id="componentes">
+      <span class="nv-eyebrow">Componentes</span>
+      <h2>Botones</h2>
+      <div class="m-matrix" role="presentation">
+        <span></span><span class="nv-caption">Primario</span><span class="nv-caption">Secundario</span><span class="nv-caption">Fantasma</span><span class="nv-caption">Peligro</span>
+        <span class="nv-caption">Normal</span>
+        <button class="nv-btn nv-btn--primary">Guardar</button><button class="nv-btn nv-btn--secondary">Cancelar</button><button class="nv-btn nv-btn--ghost">Ver detalle</button><button class="nv-btn nv-btn--danger">Eliminar</button>
+        <span class="nv-caption">Hover</span>
+        <button class="nv-btn nv-btn--primary is-hover">Guardar</button><button class="nv-btn nv-btn--secondary is-hover">Cancelar</button><button class="nv-btn nv-btn--ghost is-hover">Ver detalle</button><button class="nv-btn nv-btn--danger is-hover">Eliminar</button>
+        <span class="nv-caption">Activo</span>
+        <button class="nv-btn nv-btn--primary is-active">Guardar</button><button class="nv-btn nv-btn--secondary is-active">Cancelar</button><button class="nv-btn nv-btn--ghost is-active">Ver detalle</button><button class="nv-btn nv-btn--danger is-active">Eliminar</button>
+        <span class="nv-caption">Foco</span>
+        <button class="nv-btn nv-btn--primary is-focus">Guardar</button><button class="nv-btn nv-btn--secondary is-focus">Cancelar</button><button class="nv-btn nv-btn--ghost is-focus">Ver detalle</button><button class="nv-btn nv-btn--danger is-focus">Eliminar</button>
+        <span class="nv-caption">Deshabilitado</span>
+        <button class="nv-btn nv-btn--primary" disabled>Guardar</button><button class="nv-btn nv-btn--secondary" disabled>Cancelar</button><button class="nv-btn nv-btn--ghost" disabled>Ver detalle</button><button class="nv-btn nv-btn--danger" disabled>Eliminar</button>
+        <span class="nv-caption">Cargando</span>
+        <button class="nv-btn nv-btn--primary" aria-busy="true">Guardando</button><button class="nv-btn nv-btn--secondary" aria-busy="true">Cargando</button><button class="nv-btn nv-btn--ghost" aria-busy="true">Cargando</button><button class="nv-btn nv-btn--danger" aria-busy="true">Eliminando</button>
+        <span class="nv-caption">Pequeño</span>
+        <button class="nv-btn nv-btn--primary nv-btn--sm">Guardar</button><button class="nv-btn nv-btn--secondary nv-btn--sm">Cancelar</button><button class="nv-btn nv-btn--ghost nv-btn--sm"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button><button class="nv-btn nv-btn--danger nv-btn--sm">Eliminar</button>
+      </div>
+
+      <h2 class="m-sub">Campos</h2>
+      <div class="nv-grid">
+        <div class="nv-field">
+          <label class="nv-label" for="f1">Nombre del producto</label>
+          <input class="nv-input" id="f1" placeholder="Linterna frontal" aria-describedby="f1h">
+          <p class="nv-help" id="f1h">Como lo verá el cliente en la publicación.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="f2">Precio con IVA</label>
+          <input class="nv-input nv-input--mono is-focus" id="f2" value="$12.990">
+          <p class="nv-help">Foco: anillo de 2 px con separación de 2 px.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="f3">SKU</label>
+          <input class="nv-input nv-input--mono" id="f3" value="CAM-NIT-01" aria-invalid="true" aria-describedby="f3e">
+          <p class="nv-error-text" id="f3e"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 17v1"/></svg>El SKU debe tener el formato AAA-AAA-0000.</p>
+        </div>
+        <div class="nv-field nv-field--disabled">
+          <label class="nv-label" for="f4">Costo unitario</label>
+          <input class="nv-input nv-input--mono" id="f4" value="$6.480" disabled>
+          <p class="nv-help">Viene de Odoo; no se edita aquí.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="s1">Canal</label>
+          <div class="nv-select-wrap"><select class="nv-select" id="s1"><option>Mercado Libre</option><option>Falabella</option><option>Paris</option><option>Walmart</option></select></div>
+          <p class="nv-help">Elige dónde se publica.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="s2">Categoría</label>
+          <div class="nv-select-wrap"><select class="nv-select" id="s2" aria-invalid="true" aria-describedby="s2e"><option>Sin categoría</option></select></div>
+          <p class="nv-error-text" id="s2e"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 17v1"/></svg>Elige una categoría para publicar.</p>
+        </div>
+        <div class="nv-field nv-field--disabled">
+          <label class="nv-label" for="s3">Bodega</label>
+          <div class="nv-select-wrap"><select class="nv-select" id="s3" disabled><option>Full</option></select></div>
+          <p class="nv-help">Asignada por el canal.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="t1">Descripción</label>
+          <textarea class="nv-textarea" id="t1">Linterna recargable de 800 lm.</textarea>
+        </div>
+      </div>
+
+      <div class="nv-grid" style="margin-top:var(--nv-space-34)">
+        <fieldset class="nv-fieldset">
+          <legend class="nv-label">Casillas</legend>
+          <label class="nv-check"><input type="checkbox" class="nv-checkbox" checked><span class="nv-check__text">Incluir IVA<span class="nv-help">Los montos se muestran con IVA.</span></span></label>
+          <label class="nv-check"><input type="checkbox" class="nv-checkbox"><span class="nv-check__text">Solo con stock</span></label>
+          <label class="nv-check"><input type="checkbox" class="nv-checkbox" aria-invalid="true"><span class="nv-check__text">Acepto los términos<span class="nv-error-text">Debes aceptar para continuar.</span></span></label>
+          <label class="nv-check"><input type="checkbox" class="nv-checkbox" checked disabled><span class="nv-check__text">Sincronizar con Odoo</span></label>
+        </fieldset>
+        <fieldset class="nv-fieldset">
+          <legend class="nv-label">Opciones</legend>
+          <label class="nv-check"><input type="radio" name="r" class="nv-radio" checked><span class="nv-check__text">Envío Full<span class="nv-help">Despacha el marketplace.</span></span></label>
+          <label class="nv-check"><input type="radio" name="r" class="nv-radio"><span class="nv-check__text">Envío Flex</span></label>
+          <label class="nv-check"><input type="radio" name="r2" class="nv-radio" aria-invalid="true"><span class="nv-check__text">Retiro en tienda<span class="nv-error-text">No disponible para este SKU.</span></span></label>
+          <label class="nv-check"><input type="radio" name="r3" class="nv-radio" disabled><span class="nv-check__text">Envío internacional</span></label>
+        </fieldset>
+        <fieldset class="nv-fieldset">
+          <legend class="nv-label">Interruptores</legend>
+          <label class="nv-check"><input type="checkbox" role="switch" class="nv-switch" checked><span class="nv-check__text">Publicación activa<span class="nv-help">Visible para los clientes.</span></span></label>
+          <label class="nv-check"><input type="checkbox" role="switch" class="nv-switch"><span class="nv-check__text">Aviso de stock bajo</span></label>
+          <label class="nv-check"><input type="checkbox" role="switch" class="nv-switch" aria-invalid="true"><span class="nv-check__text">Precio automático<span class="nv-error-text">Falta el costo para calcularlo.</span></span></label>
+          <label class="nv-check"><input type="checkbox" role="switch" class="nv-switch" disabled><span class="nv-check__text">Campañas</span></label>
+        </fieldset>
+      </div>
+
+      <h2 class="m-sub">Tabla de datos</h2>
+      <div class="nv-table-wrap">
+        <table class="nv-table">
+          <caption>Precios por canal, con IVA</caption>
+          <thead><tr><th>SKU</th><th>Producto</th><th>Estado</th><th class="nv-num">Flujo</th><th class="nv-num">Stock</th><th class="nv-num">Precio</th></tr></thead>
+          <tbody>
+            <tr><td class="nv-sku">CAM-NIT-0001</td><td>Linterna frontal NU25</td><td><span class="nv-badge nv-badge--activo"><span class="nv-dot"></span>Activo</span></td><td class="nv-num">400 lm</td><td class="nv-num">24 u</td><td class="nv-num" data-clp="24990"></td></tr>
+            <tr><td class="nv-sku">CAM-NIT-0004</td><td>Linterna de mano MH12</td><td><span class="nv-badge nv-badge--pausado"><span class="nv-dot"></span>Pausado</span></td><td class="nv-num">1.200 lm</td><td class="nv-num">3 u</td><td class="nv-num" data-clp="69990"></td></tr>
+            <tr><td class="nv-sku">COC-CAF-0005</td><td>Cafetera moka 9 tazas (450 ml)</td><td><span class="nv-badge nv-badge--error"><span class="nv-dot"></span>Error</span></td><td class="nv-num">—</td><td class="nv-num">0 u</td><td class="nv-num" data-clp="32990"></td></tr>
+            <tr><td class="nv-sku">COC-TAB-0002</td><td>Tabla de picoteo</td><td><span class="nv-badge nv-badge--borrador"><span class="nv-dot"></span>Borrador</span></td><td class="nv-num">—</td><td class="nv-num">12 u</td><td class="nv-num" data-clp="12990"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="m-sub">Tarjetas y KPI</h2>
+      <div class="nv-grid">
+        <div class="nv-card nv-kpi"><span class="nv-eyebrow">Ventas del mes</span><span class="nv-kpi__value" data-clp="4382590"></span><span class="nv-kpi__delta nv-kpi__delta--up"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>12,4 % vs octubre</span></div>
+        <div class="nv-card nv-kpi"><span class="nv-eyebrow">Margen promedio</span><span class="nv-kpi__value">18,2 %</span><span class="nv-kpi__delta nv-kpi__delta--down"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>1,3 pp vs octubre</span></div>
+        <div class="nv-card nv-kpi"><span class="nv-eyebrow">Publicaciones activas</span><span class="nv-kpi__value">148</span><span class="nv-kpi__delta">Sin cambios</span></div>
+        <div class="nv-card">
+          <h3 class="nv-card__title">Linterna frontal NU25</h3>
+          <p class="nv-small nv-muted">Recargable por USB-C, 400&nbsp;lm y 52&nbsp;g. Lista para publicar en cuatro canales.</p>
+          <div class="nv-card__footer"><button class="nv-btn nv-btn--secondary nv-btn--sm">Ver ficha</button><button class="nv-btn nv-btn--ghost nv-btn--sm">Duplicar</button></div>
+        </div>
+      </div>
+
+      <h2 class="m-sub">Estados</h2>
+      <div class="nv-row">
+        <span class="nv-badge nv-badge--activo"><span class="nv-dot"></span>Activo</span>
+        <span class="nv-badge nv-badge--pausado"><span class="nv-dot"></span>Pausado</span>
+        <span class="nv-badge nv-badge--error"><span class="nv-dot"></span>Error</span>
+        <span class="nv-badge nv-badge--borrador"><span class="nv-dot"></span>Borrador</span>
+        <span class="nv-badge nv-badge--glaciar"><span class="nv-dot"></span>Glaciar</span>
+        <span class="nv-badge nv-badge--lenga"><span class="nv-dot"></span>Lenga</span>
+      </div>
+
+      <h2 class="m-sub">Alertas</h2>
+      <div class="nv-stack">
+        <div class="nv-alert nv-alert--info" role="status"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v6M12 7v1"/></svg><div><strong class="nv-alert__title">Información</strong><p>Los precios se actualizan cada hora.</p></div></div>
+        <div class="nv-alert nv-alert--success" role="status"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><div><strong class="nv-alert__title">Listo</strong><p>Guardamos los cambios en 4 publicaciones.</p></div></div>
+        <div class="nv-alert nv-alert--warning" role="status"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 17v1"/></svg><div><strong class="nv-alert__title">Revisa el stock</strong><p>Quedan 3 u en Full de CAM-NIT-0004.</p></div></div>
+        <div class="nv-alert nv-alert--danger" role="alert"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM9 9l6 6M15 9l-6 6"/></svg><div><strong class="nv-alert__title">No pudimos publicar</strong><p>Falabella rechazó la categoría. Elige otra e intenta de nuevo.</p></div></div>
+      </div>
+
+      <h2 class="m-sub">Pestañas</h2>
+      <div class="nv-tabs" role="tablist" aria-label="Canales">
+        <button class="nv-tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">Mercado Libre</button>
+        <button class="nv-tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">Falabella</button>
+        <button class="nv-tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">Paris</button>
+        <button class="nv-tab" role="tab" aria-selected="false" disabled>Ripley</button>
+      </div>
+      <div class="nv-tabpanel" role="tabpanel" id="tp1" aria-labelledby="tb1"><p class="nv-small">148 publicaciones activas en Mercado Libre.</p></div>
+      <div class="nv-tabpanel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden><p class="nv-small">63 publicaciones activas en Falabella.</p></div>
+      <div class="nv-tabpanel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden><p class="nv-small">41 publicaciones activas en Paris.</p></div>
+
+      <h2 class="m-sub">Vacío, cargando y error</h2>
+      <div class="nv-grid">
+        <div class="nv-state">
+          <svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16"/></svg>
+          <p class="nv-state__title">Aún no hay publicaciones</p>
+          <p>Cuando publiques un producto, lo verás aquí.</p>
+          <button class="nv-btn nv-btn--secondary nv-btn--sm">Publicar un producto</button>
+        </div>
+        <div class="nv-state" aria-busy="true" aria-label="Cargando">
+          <span class="nv-skeleton nv-skeleton--title" style="width:70%"></span>
+          <span class="nv-skeleton nv-skeleton--text" style="width:100%"></span>
+          <span class="nv-skeleton nv-skeleton--text" style="width:85%"></span>
+          <span class="nv-skeleton nv-skeleton--block" style="width:100%"></span>
+        </div>
+        <div class="nv-state nv-state--error" role="alert">
+          <svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 17v1"/></svg>
+          <p class="nv-state__title">No pudimos cargar los precios</p>
+          <p>Revisa tu conexión e intenta de nuevo en unos minutos.</p>
+          <button class="nv-btn nv-btn--secondary nv-btn--sm">Reintentar</button>
+        </div>
+      </div>
+
+      <h2 class="m-sub">Gráficos</h2>
+      <div class="nv-card">
+        <span class="nv-eyebrow">Ventas por canal, octubre</span>
+        <ul class="nv-legend">
+          <li><span class="nv-swatch nv-data-1"></span>Mercado Libre</li>
+          <li><span class="nv-swatch nv-data-2"></span>Falabella</li>
+          <li><span class="nv-swatch nv-data-3"></span>Paris</li>
+          <li><span class="nv-swatch nv-data-4"></span>Walmart</li>
+          <li><span class="nv-swatch nv-data-5"></span>Ripley</li>
+          <li><span class="nv-swatch nv-data-6"></span>Tienda propia</li>
+        </ul>
+        <ul class="nv-bars" data-bars>
+          <li class="nv-data-1" data-v="2140000"><span class="nv-bars__label">Mercado Libre</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+          <li class="nv-data-2" data-v="980500"><span class="nv-bars__label">Falabella</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+          <li class="nv-data-3" data-v="612300"><span class="nv-bars__label">Paris</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+          <li class="nv-data-4" data-v="401900"><span class="nv-bars__label">Walmart</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+          <li class="nv-data-5" data-v="158200"><span class="nv-bars__label">Ripley</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+          <li class="nv-data-6" data-v="89690"><span class="nv-bars__label">Tienda propia</span><span class="nv-bars__track"><span class="nv-bars__fill"></span></span><span class="nv-bars__value"></span></li>
+        </ul>
+      </div>
+
+      <h2 class="m-sub">Menú y aviso flotante</h2>
+      <p class="m-note">Únicos elementos con sombra, junto con los diálogos.</p>
+      <div class="nv-row" style="align-items:flex-start">
+        <div class="nv-menu" role="menu" aria-label="Acciones">
+          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:var(--nv-radius-control)">Editar precio</button>
+          <button class="nv-btn nv-btn--ghost" role="menuitem" style="width:100%;justify-content:flex-start;border-radius:var(--nv-radius-control)">Pausar publicación</button>
+        </div>
+        <div class="nv-toast" role="status"><svg class="nv-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Precio actualizado</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nv-footer">
+    <div class="nv-footer__inner">
+      <span>Navarino Servicios Comerciales © 2026</span>
+      <span>Fuente: wiki negocios/navarino/marca · comercial-kit</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      var clp = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+      var num = new Intl.NumberFormat("es-CL", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+      document.querySelectorAll("[data-clp]").forEach(function (el) { el.textContent = clp.format(Number(el.getAttribute("data-clp"))); });
+
+      var bars = document.querySelectorAll("[data-bars] li");
+      var max = 0;
+      bars.forEach(function (li) { max = Math.max(max, Number(li.getAttribute("data-v"))); });
+      bars.forEach(function (li) {
+        var v = Number(li.getAttribute("data-v"));
+        li.querySelector(".nv-bars__fill").style.setProperty("--_v", (v / max * 100).toFixed(1) + "%");
+        li.querySelector(".nv-bars__value").textContent = clp.format(v);
+      });
+
+      /* Espaciado */
+      var esp = [3, 5, 8, 13, 21, 34, 55, 89];
+      var cont = document.querySelector("[data-spaces]");
+      esp.forEach(function (n) {
+        var row = document.createElement("div");
+        row.className = "m-space";
+        row.innerHTML = '<span class="m-space__label">--nv-space-' + n + '</span><span class="m-space__bar" style="width:var(--nv-space-' + n + ')"></span><span class="nv-mono">' + n + ' px</span>';
+        cont.appendChild(row);
+      });
+
+      /* Paleta con hex y contraste WCAG medido en vivo */
+      var grupos = {
+        marca: [["beagle", "blanco"], ["basalto", "blanco"], ["acero", "beagle"], ["niebla", "beagle"], ["blanco", "beagle"], ["senal", "beagle"], ["senal-profunda", "blanco"], ["kraft", "beagle"]],
+        semanticos: [["surface", "ink"], ["surface-sunken", "ink"], ["surface-raised", "ink"], ["ink", "surface"], ["ink-muted", "surface"], ["line", "surface"], ["line-strong", "surface"], ["line-strong", "surface-sunken"], ["accent", "surface"], ["accent-hover", "surface"], ["on-accent", "accent"], ["accent-fill", "on-accent-fill"], ["accent-fill-hover", "on-accent-fill"], ["on-accent-fill", "accent-fill"], ["accent-text", "surface"], ["focus", "surface-sunken"], ["link-hover", "surface"], ["ink", "surface-sunken"], ["ink-muted", "surface-sunken"]],
+        apoyo: [["glaciar", "surface"], ["glaciar-ink", "surface"], ["glaciar-ink", "glaciar-bg"], ["glaciar-bg", "glaciar-ink"], ["glaciar-line", "surface"], ["lenga", "surface"], ["lenga-ink", "lenga-bg"], ["lenga-bg", "lenga-ink"]],
+        estados: [["success", "success-bg"], ["warning", "warning-bg"], ["danger", "danger-bg"], ["info", "info-bg"]],
+        datos: [["data-1", "surface"], ["data-2", "surface"], ["data-3", "surface"], ["data-4", "surface"], ["data-5", "surface"], ["data-6", "surface"], ["data-1", "surface-sunken"], ["data-2", "surface-sunken"], ["data-3", "surface-sunken"], ["data-4", "surface-sunken"], ["data-5", "surface-sunken"], ["data-6", "surface-sunken"], ["data-grid", "surface"]]
+      };
+      function hex(nombre) { return getComputedStyle(document.documentElement).getPropertyValue("--nv-" + nombre).trim().toUpperCase(); }
+      function lum(h) {
+        var c = h.replace("#", "");
+        if (c.length === 3) c = c.split("").map(function (x) { return x + x; }).join("");
+        return [0, 2, 4].map(function (i) {
+          var v = parseInt(c.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        }).reduce(function (a, v, i) { return a + v * [0.2126, 0.7152, 0.0722][i]; }, 0);
+      }
+      function ratio(a, b) { var l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); }
+      function pintarPaleta() {
+        Object.keys(grupos).forEach(function (g) {
+          var box = document.querySelector('[data-swatches="' + g + '"]');
+          box.innerHTML = "";
+          grupos[g].forEach(function (par) {
+            var h = hex(par[0]), contra = hex(par[1]);
+            var r = ratio(h, contra);
+            var el = document.createElement("div");
+            el.className = "m-swatch";
+            el.innerHTML = '<div class="m-swatch__chip" style="background:var(--nv-' + par[0] + ')"></div>' +
+              '<div class="m-swatch__body"><span class="m-swatch__name">--nv-' + par[0] + '</span>' +
+              '<span class="m-swatch__meta">' + h + '</span>' +
+              '<span class="m-swatch__meta">' + num.format(r) + ':1 contra ' + par[1] + '</span></div>';
+            box.appendChild(el);
+          });
+        });
+      }
+      pintarPaleta();
+      new MutationObserver(pintarPaleta).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+      /* Pestañas */
+      var tabs = document.querySelectorAll('.nv-tabs [role="tab"]:not([disabled])');
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          tabs.forEach(function (t) {
+            var activo = t === tab;
+            t.setAttribute("aria-selected", activo ? "true" : "false");
+            t.tabIndex = activo ? 0 : -1;
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !activo;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
